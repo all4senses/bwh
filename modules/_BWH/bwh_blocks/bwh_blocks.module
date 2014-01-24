@@ -1,0 +1,974 @@
+<?php
+
+/**
+ * @file
+ * Module for building and managing site's blocks.
+ */
+
+
+//module_load_include('inc', 'bwh_blocks', 'inc/constants');
+
+
+/**
+ * Implements hook_block_info().
+ */
+function bwh_blocks_block_info() {
+  
+  $blocks['main_menu_om_providers'] = array(
+    'info' => 'OM VoIP Providers',
+    'cache' => DRUPAL_NO_CACHE,
+  ); 
+  
+  $blocks['main_menu_om_types'] = array(
+    'info' => 'OM VoIP Types',
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  
+  $blocks['main_menu_om_blog'] = array(
+    'info' => 'OM Blog',
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  
+  $blocks['footer_links'] = array(
+    'info' => 'Footer links',
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  $blocks['footer_menu'] = array(
+    'info' => 'Footer menu',
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  
+  $blocks['social_links'] = array(
+    'info' => 'Social links',
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  $blocks['blog_archive'] = array(
+    'info' => 'Blog archive',
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  
+  
+  $blocks['request_quote_v1'] = array(
+    'info' => 'Request a quote block v1 (sidebar 2 steps)',
+    'cache' => DRUPAL_NO_CACHE,
+  ); 
+  
+  $blocks['send_msg_n_subscribe'] = array(
+    'info' => 'Send a message and Newsletter Sign Up',
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  
+  $blocks['recomended_sites'] = array(
+    'info' => 'Recomended sites',
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  
+  $blocks['providers_table_in_var'] = array(
+    'info' => 'Providers table saved in Drupal variables',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  
+  
+  
+  // Aquire blocks for all prefaces with defined bottoms.
+  $query = db_select('node', 'n');
+  $query->leftJoin('field_data_field_preface_bottom', 'pb', 'pb.entity_id = n.nid');
+  $query->fields('pb', array('entity_id'));
+  $query->leftJoin('field_data_field_preface_key', 'pk', 'pk.entity_id = pb.entity_id');
+  $query->fields('pk', array('field_preface_key_value'));
+  $query->condition('pb.delta', 0);
+  $query->condition('pb.field_preface_bottom_value', 1, '>=');
+  $query->isNotNull('pk.field_preface_key_value');
+  
+  $prefaces_v_bottoms = $query->execute()->fetchAllAssoc('entity_id');
+
+  variable_set('bwh_prefaces_w_bottoms', serialize($prefaces_v_bottoms));
+ 
+  foreach ($prefaces_v_bottoms as $prefaces_v_bottom) {
+    
+    $blocks['bottom_of_' . $prefaces_v_bottom->field_preface_key_value] = array(
+      'info' => 'Bottom of ' . $prefaces_v_bottom->field_preface_key_value,
+      'cache' => DRUPAL_NO_CACHE,
+    );
+  
+  }
+  
+  
+  $blocks['home_banner'] = array(
+    'info' => 'Home banner',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  
+  $blocks['home_services'] = array(
+    'info' => 'Home services select',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  
+  $blocks['disclosure'] = array(
+    'info' => 'Disclosure',
+    'cache' => DRUPAL_CACHE_GLOBAL,
+  );
+  
+  $blocks['sidebar_share_block'] = array(
+    'info' => 'Share this Post Static',
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  
+  $blocks['writer-admin-links'] = array(
+    'info' => 'Writer admin links',
+    'cache' => DRUPAL_NO_CACHE,
+  );
+      
+  return $blocks;
+}
+
+
+/**
+ * Implements hook_block_view().
+ */
+function bwh_blocks_block_view($delta = '') {
+  $block = array();
+  switch ($delta) {  
+    
+    case 'main_menu_om_providers':
+      $block['subject'] = 'OM VoIP Providers';
+      $block['content'] = bwh_blocks_get_omMenuBlock_byTitle('VoIP Providers', 'bwh_blocks_get_omMenuBlock_Providers');
+      break;
+    
+    case 'main_menu_om_types':
+      $block['subject'] = 'OM VoIP Types';
+      $block['content'] = bwh_blocks_get_omMenuBlock_byTitle('Types Of VoIP', 'bwh_blocks_get_omMenuBlock_Types');
+      break;
+    
+    case 'main_menu_om_blog':
+      $block['subject'] = 'OM Blog';
+      $block['content'] = bwh_blocks_get_omMenuBlock_byTitle('Blog', 'bwh_blocks_get_omMenuBlock_Blog');
+      break;
+    
+    case 'footer_links':
+      $block['subject'] = 'Footer links';
+      $block['content'] = bwh_blocks_get_footerLinks();
+      break; 
+    case 'footer_menu':
+      $block['subject'] = 'Footer menu';
+      $block['content'] = bwh_blocks_get_footerMenu();
+      break; 
+    
+    case 'social_links':
+      $block['subject'] = 'Social links';
+      $block['content'] = bwh_blocks_get_socialLinks();
+      break; 
+    
+    case 'blog_archive':
+      $block['subject'] = 'Blog archive';
+      $block['content'] = bwh_blocks_get_blogArchive();
+      break; 
+    
+    case 'request_quote_v1':
+      $block['subject'] = 'Request a quote block v1 (for a side bar 2 steps)';
+      $block['content'] = bwh_blocks_get_requestQuote_block_v1();
+      break;
+    
+    case 'send_msg_n_subscribe':
+      $block['subject'] = '';// 'Send a message and Newsletter Sign Up';
+      $block['content'] = drupal_get_form('bwh_misc_sendMessageAndNewsletterSubscribe_form');
+      break;
+    
+    case 'recomended_sites':
+      $block['subject'] = 'Recomended sites';
+      $block['content'] = bwh_blocks_get_recommendedSites_block();
+      break;
+    
+    case 'providers_table_in_var':
+      $block['subject'] = '';
+      $block['content'] = bwh_blocks_getProvidersTableFromViews_withCaching();
+      break;
+    
+    
+    
+    case 'home_banner':
+      $block['subject'] = '';
+      $block['content'] = bwh_blocks_getAdBlock('home_banner');
+      break;
+    
+    case 'home_services':
+      $block['subject'] = '';
+      $block['content'] = bwh_blocks_getAdBlock('home_services');
+      break;
+    
+    case 'disclosure':
+      $block['subject'] = '';
+      $block['content'] = bwh_blocks_getAdBlock('disclosure');
+      break;
+    
+    case 'sidebar_share_block':
+      $block['subject'] = 'Share this Post:';
+      $block['content'] = bwh_blocks_getSidebarShareStaticBlock();
+      break;
+    
+    case 'writer-admin-links':
+      $block['subject'] = '';
+      $block['content'] = bwh_blocks_getWriterAdminLinks();
+      break;
+    
+    default:
+      
+      // Aquire blocks for all prefaces with defined bottoms.
+      $prefaces_v_bottoms = unserialize(variable_get('bwh_prefaces_w_bottoms'));
+      foreach ($prefaces_v_bottoms as $prefaces_v_bottom) {
+
+        if ($delta == 'bottom_of_' . $prefaces_v_bottom->field_preface_key_value) {
+          $block['subject'] = '';
+          $block['content'] = bwh_misc_getPrefaceBottomSection(NULL, $prefaces_v_bottom->entity_id);
+        }
+        
+      }
+      
+      break;
+
+    
+  }
+
+  return $block;
+}
+
+
+/**
+ * Implements hook_block_configure().
+ */
+function bwh_blocks_block_configure($delta = '') {
+  
+  $form = array();
+  
+  switch ($delta) {
+//    case 'weekly_video' :
+//      $form['youtube_video_id'] = array(
+//        '#type' => 'textfield', 
+//        '#title' => t('YouTube video id'),
+//        '#default_value' => variable_get('bwh_weekly_video_block', NULL), 
+//      );
+//      break;
+    
+    
+    
+    case 'disclosure':
+      $data = unserialize(variable_get('bwh_disclosure_block_data', NULL));
+          
+      $form['bwh_body'] = array(
+        '#type' => 'text_format', 
+        '#title' => 'Body',
+        '#default_value' => $data['body']['value'],
+      );
+      
+      break;
+
+    
+    case 'home_banner':
+      $data = unserialize(variable_get('bwh_home_banner_block_data', NULL));
+    
+      //dpm($recommendedSites_block);
+
+      $form['bwh_main_title'] = array(
+        '#type' => 'textfield', 
+        '#title' => 'Main title',
+        '#default_value' => isset($data['main_title']) ? $data['main_title'] : $data['title'], 
+      );
+      
+      $form['bwh_main_body'] = array(
+        '#type' => 'text_format', 
+        '#title' => 'Main body',
+        '#default_value' => isset($data['main_body']) ? $data['main_body']['value'] : $data['body']['value'],
+      );
+      
+      $form['bwh_right_title'] = array(
+        '#type' => 'textfield', 
+        '#title' => 'Right title',
+        '#default_value' => isset($data['right_title']) ? $data['right_title'] : '', 
+      );
+      
+      $form['bwh_right_body'] = array(
+        '#type' => 'text_format', 
+        '#title' => 'Right body',
+        '#default_value' => isset($data['right_body']) ? $data['right_body']['value'] : '',
+      );
+      
+      break;
+
+    
+    case 'home_services':
+      $data = unserialize(variable_get('bwh_home_services_block_data', NULL));
+      
+      $form['bwh_text'] = array(
+        '#type' => 'text_format', 
+        '#title' =>'BWH text',
+        '#default_value' => $data['bwh_text']['value'], 
+      );
+      $form['vps_text'] = array(
+        '#type' => 'text_format', 
+        '#title' =>'VPS text',
+        '#default_value' => $data['vps_text']['value'], 
+      );
+      $form['ds_text'] = array(
+        '#type' => 'text_format', 
+        '#title' =>'DS text',
+        '#default_value' => $data['ds_text']['value'], 
+      );
+      
+      break;
+
+  }
+  
+  return $form;
+}
+
+
+/**
+ * Implements hook_block_save().
+ */
+function bwh_blocks_block_save($delta = '', $edit = array()) {
+
+  switch ($delta) {
+    case 'weekly_video':
+      variable_set('bwh_weekly_video_block', $edit['youtube_video_id']);
+      break;
+    
+    case 'disclosure':
+      $data = array('body' => $edit['bwh_body']);
+      variable_set('bwh_disclosure_block_data', serialize($data));
+      break;
+    
+    case 'home_banner':
+      $data = array('main_title' => $edit['bwh_main_title'], 'main_body' => $edit['bwh_main_body'], 'right_title' => $edit['bwh_right_title'], 'right_body' => $edit['bwh_right_body']);
+      variable_set('bwh_home_banner_block_data', serialize($data));
+      break;
+    
+    case 'home_services':
+      $data = array('bwh_text' => $edit['bwh_text'], 'vps_text' => $edit['vps_text'], 'ds_text' => $edit['ds_text']);
+      variable_set('bwh_home_services_block_data', serialize($data));
+      break;
+  }
+  
+}
+
+
+/**
+ * Block with writer admin links.
+ */
+function bwh_blocks_getWriterAdminLinks() {
+  return '<a href="/admin/content-ch?service=All">Add/Edit Content</a><a href="/cc">Clear Cache</a>';
+}
+
+
+/**
+ * Block with sidebar share links for a current post.
+ */
+function bwh_blocks_getSidebarShareStaticBlock($node = NULL, $block_title = NULL, $source = 'sidebar') {
+  
+  if (arg(0) == 'taxonomy' && $source == 'sidebar') {
+    return NULL;
+  }
+  
+  if (!$node) {
+    $node = node_load(str_replace('node/', '', $_GET['q']));
+  }
+  
+  $out = NULL;
+  $source = 'bestwebhosting.ca';
+  $post_url = url($_GET['q'], array('absolute' => TRUE));
+  $post_title = $node->title;
+  $summary = !empty($node->metatags['description']['value']) ? $node->metatags['description']['value'] : drupal_substr(strip_tags($node->body['und'][0]['value']), 0, 200);
+
+  $link_open = 'href="javascript:void(window.open(' . "'";
+  $links = array(
+      'Twitter' => array('social_url' => 'http://twitter.com/share', 'query' => array('text' => $post_title, 'via' => 'bestwebhosting.ca')),
+      'Facebook' => array('social_url' => 'http://www.facebook.com/sharer.php', 'query' => array('u' => $post_url), 'link_close' => "','ShareThis','toolbar=0,status=0,width=626,height=436'))"),
+      //array('social_url' => 'http://www.facebook.com/sharer.php', 'query' => array('p[title]' => $post_title, 'p[url]' => $post_url, 'p[summary]' => $summary, 'p[images]' => $image, )),
+      'GooglePlus' => array('social_url' => 'https://plus.google.com/share', 'query' => array('url' => $post_url)),
+      'LinkedIn' => array('social_url' => 'http://www.linkedin.com/shareArticle', 'query' => array('title' => $post_title, 'mini' => 'true', 'url' => $post_url, 'summary' => $summary, 'source' => $source)),
+  
+    //'http://twitter.com/share?text=What%20is%20%E2%80%9CBig%20Data%E2%80%9D%20in%20Healthcare,%20and%20Who%E2%80%99s%20Already%20Doing%20It?',
+    //'http://www.linkedin.com/shareArticle?mini=true&url=http://profitable-practice.softwareadvice.com/what-is-big-data-in-healthcare-0813/&title=What%20is%20%E2%80%9CBig%20Data%E2%80%9D%20in%20Healthcare,%20and%20Who%E2%80%99s%20Already%20Doing%20It?&summary=What+will+big+data+mean+for+healthcare%3F+I+talked+to+expert+Dr.+Russell+Richmond%2C+and+looked+at+5+companies+using+big+data+today.&source=The+Profitable+Practice',
+    //'https://plus.google.com/share?url=http://profitable-practice.softwareadvice.com/what-is-big-data-in-healthcare-0813/',
+    //'http://www.facebook.com/sharer.php?s=%20100&p[title]=What%20is%20%E2%80%9CBig%20Data%E2%80%9D%20in%20Healthcare,%20and%20Who%E2%80%99s%20Already%20Doing%20It?&p[url]=http://profitable-practice.softwareadvice.com/what-is-big-data-in-healthcare-0813/&p[images][0]=http://profitable-practice.softwareadvice.com/files/2013/08/genomedata_thumbnail.jpg&p[summary]=What+will+big+data+mean+for+healthcare%3F+I+talked+to+expert+Dr.+Russell+Richmond%2C+and+looked+at+5+companies+using+big+data+today.',
+  );
+  
+  foreach ($links as $class => $link) {
+    $out .= l($class, $link['social_url'], array('attributes' => array(/*'target' => '_blank',*/ 'class' => array($class), 'rel' => 'nofollow'), 'query' => $link['query']));
+  }
+  
+  //$out .= '<a ' . $link_open . $links['Facebook']['social_url'] . $links['Facebook']['link_close'] . '">Share</a>';
+  
+  return '<div class="share-static">' . $block_title . $out . '</div>';
+}
+
+
+/**
+ * Returns block with cached providers table.
+ */
+function bwh_blocks_getProvidersTableFromViews_withCaching() {
+
+  if(!$providers = variable_get('bwh_providers_table')) {
+    $block_data = array('module' => 'views', 'delta' => 'providers-block_providers_list_table', 'shadow' => FALSE);
+    $providers = bwh_blocks_getBlockThemed($block_data);
+    variable_set('bwh_providers_table', $providers);
+  }
+ 
+  return $providers;
+}
+
+
+/**
+ * Returns a weekly Video block.
+ */
+function bwh_blocks_get_recommendedSites_block() {
+  
+  $recommendedSites_block = unserialize(variable_get('bwh_recommendedSites_block', NULL));
+  //dpm($recommendedSites_block);
+  $out = '<div class="body">' . $recommendedSites_block['bwh_body']['value'] . '</body>';
+
+  return $out;
+}
+
+
+/**
+ * Returns a block blog archive list months.
+ */
+function bwh_blocks_get_blogArchive() {
+
+  $out = variable_get('bwh_blog_summary');
+  
+  return $out;
+}
+
+/**
+ * Returns an ad block by its name.
+ */
+function bwh_blocks_getAdBlock($ad_name) {
+  switch ($ad_name) {
+    
+    case 'disclosure':
+      $data = unserialize(variable_get('bwh_disclosure_block_data', NULL));
+      return '<div class="body">' . $data['body']['value'] . '</div>';
+    
+    case 'home_banner':
+      $data = unserialize(variable_get('bwh_home_banner_block_data', NULL));
+      if (!isset($data['main_title'])) {
+        $data['main_title'] = $data['title'];
+      }
+      if (!isset($data['main_body'])) {
+        $data['main_body'] = $data['body'];
+      }
+      //return '<h1>' . $data['main_title'] . '</h1><div class="banner_body">' . $data['main_body']['value'] . '</div><img alt="UNBIASED CLOUD HOSTING REVIEWS & COMPARISONS" title="UNBIASED CLOUD HOSTING REVIEWS & COMPARISONS" src="/sites/all/themes/bwh/css/images/home-banner.jpg" /><div class="right"><h2>' . $data['right_title'] . '</h2><div class="banner_body">' . $data['right_body']['value'] . '</div></div>';
+      return '<h1>' . $data['main_title'] . '</h1><div class="banner_body">' . $data['main_body']['value'] . '</div><img alt="UNBIASED CLOUD HOSTING REVIEWS & COMPARISONS" title="UNBIASED CLOUD HOSTING REVIEWS & COMPARISONS" src="/sites/all/themes/bwh/css/images/home-banner-pic.png" /><div class="right"><h2>' . $data['right_title'] . '</h2><div class="banner_body">' . $data['right_body']['value'] . '</div></div>';
+      
+    case 'home_services':
+      $data = unserialize(variable_get('bwh_home_services_block_data', NULL));
+      return '
+        <div class="sevice-block">
+          <div class="top-bar"></div>
+          <!--<img alt="Cloud Hosting" title="Cloud Hosting" src="/sites/all/themes/bwh/css/images/bwh-icon.png" />-->
+          <div class="bwh icon"></div>
+          <h3>Cloud Hosting</h3>
+          <div class="text">' . $data['bwh_text']['value'] . '</div>
+          <a href="/cloud" class="read-more">Read More</a>
+        </div>
+        <div class="sevice-block">
+          <div class="top-bar"></div>
+          <!--<img alt="VPS Hosting" title="VPS Hosting" src="/sites/all/themes/bwh/css/images/vps-icon.png" />-->
+          <div class="vps icon"></div>
+          <h3>VPS Hosting</h3>
+          <div class="text">' . $data['vps_text']['value'] . '</div>
+          <a href="/vps" class="read-more">Read More</a>
+        </div>
+        <div class="sevice-block last">
+          <div class="top-bar"></div>
+          <!--<img alt="Dedicated Servers" title="Dedicated Servers" src="/sites/all/themes/bwh/css/images/ds-icon.png" />-->
+          <div class="ds icon"></div>
+          <h3>Dedicated Servers</h3>
+          <div class="text">' . $data['ds_text']['value'] . '</div>
+          <a href="/dedicated-servers" class="read-more">Read More</a>
+        </div>
+          ';
+  }
+}
+
+
+/**
+ * Returns a themed Social links block.
+ */
+function bwh_blocks_get_socialLinks() {
+  
+  $cid = 'bwh_cached_socialLinks';
+//  $cache = cache_get($cid, 'cache');
+//  if ($cache && !empty($cache->data) && $cache->expire > time()) {
+//    $out = $cache->data;
+//  }
+//  else 
+    {
+    $menu = menu_build_tree('menu-social-links');
+    $out = '<div class="title">Connect with us on the following social media platforms</div>' . theme('bwh_misc_socialLinks', array('submenu' => array('below' => $menu)));
+    //$out = '<div class="title">Follow us on our social media channels:</div>' . theme('bwh_misc_submenuSimple', array('class' => 'social-links', 'submenu' => array('below' => $menu)));
+    
+    cache_set($cid, $out, 'cache', strtotime('+31 day'));
+  } 
+  
+  return $out;
+}
+
+
+/**
+ * Returns a themed Footer menu (with submenus).
+ */
+function bwh_blocks_get_footerMenu() {
+  
+  $cid = 'bwh_footer_menu';
+  $cache = cache_get($cid, 'cache');
+
+  if ($cache && !empty($cache->data) && $cache->expire > time()) {
+    $out = $cache->data;
+  }
+  else 
+    {
+    $menu = menu_build_tree('menu-footer-menu');
+    $out = theme('bwh_misc_submenuSimple_byColumns', array('submenu' => array('below' => $menu)/*, 'class' => 'menu'*/, 'delimiter' => '<li> | </li>')); // . '<div class="c">© 2014 bestwebhosting.ca | All Rights Reserved</div>';
+    cache_set($cid, $out, 'cache', strtotime('+31 day'));
+  } 
+  
+  return $out;
+}
+
+
+/**
+ * Returns a themed Footer simple line links.
+ */
+function bwh_blocks_get_footerLinks() {
+  
+  $cid = 'bwh_footer_links';
+  $cache = cache_get($cid, 'cache');
+
+  if ($cache && !empty($cache->data) && $cache->expire > time()) {
+    $out = $cache->data;
+  }
+  else {
+    $menu = menu_build_tree('menu-footer-links');
+    $out = theme('bwh_misc_submenuSimple', array('submenu' => array('below' => $menu), 'class' => 'menu', 'delimiter' => '<li> | </li>')); // . '<div class="c">В© 2012 GetVoIP.com | All Rights Reserved</div>';
+    cache_set($cid, $out, 'cache', strtotime('+31 day'));
+  } 
+    
+  return $out;
+}
+
+
+/**
+ * Dispatcher for getting themed block for MegaMenu by a block title.
+ */
+function bwh_blocks_get_omMenuBlock_byTitle($title, $function) {
+
+  // global $language;
+  // $types = cache_get('types_' . $language->language);
+  // Expire = current time + 2 hours.
+  // cache_set('types_' . $language->language, $types, 'cache', time() + 7200);
+  
+  // Get main menu wireframe menu.
+  $submenu = bwh_blocks_getSubmenuByTitle('main-menu', $title);
+  //return '<div class="om-btitle">' . $title . '</div>' . $function($submenu);
+  return $function($submenu);
+}
+
+
+/**
+ * Returns a themed VoIP Providers block content for MegaMenu.
+ */
+function bwh_blocks_get_omMenuBlock_Providers($submenu) {
+  return theme('bwh_misc_submenuSimple', array('submenu' => $submenu, 'class' => 'block'));
+}
+
+/**
+ * Returns a themed VoIP Types block content for MegaMenu.
+ */
+function bwh_blocks_get_omMenuBlock_Types($submenu) {
+  return theme('bwh_misc_submenuSimple', array('submenu' => $submenu, 'class' => 'block'));
+}
+
+/**
+ * Returns a themed VoIP Blog block content for MegaMenu.
+ */
+function bwh_blocks_get_omMenuBlock_Blog($submenu) {
+  $block_data = array('module' => 'bwh_blocks', 'delta' => 'blog_post_topics', 'subject_visible' => FALSE);
+  $out = bwh_blocks_getBlockThemed($block_data);
+  return $out;  
+  //return theme('bwh_misc_submenuSimple', array('submenu' => $submenu, 'class' => 'block'));
+}
+
+
+/**
+ * Returns a submenu from a menu.
+ */
+function bwh_blocks_getSubmenuByTitle($menu_name, $submenu_title) {
+  $menu = menu_build_tree($menu_name);
+  if(!$menu) {
+    return NULL;
+  }
+  foreach ($menu as $submenu) {
+    if ($submenu['link']['link_title'] == $submenu_title) {
+      return $submenu;
+    }
+  }
+  return NULL;
+}
+
+
+/**
+ * Wrap a block content in proper block's divs.
+ */
+function bwh_blocks_wrapInBlockThemed($block_data, $block)
+{
+  if(!isset($block['content']) || !$block['content']) {
+      return null;
+  }
+  if (is_array($block['content'])) {
+    $block['content'] = render($block);
+  }
+  if(isset($block_data['subjectTag']) && $block_data['subjectTag']) {
+    $subjectTag = $block_data['subjectTag'];
+  }
+  else {
+    $subjectTag = 'h2';
+  }
+  if(isset($block_data['replaceUnderlinesWithDashesInID']) && $block_data['replaceUnderlinesWithDashesInID']) {
+    $block_data['module'] = str_replace('_', '-', $block_data['module']);
+    $block_data['delta'] = str_replace('_', '-', $block_data['delta']);
+  }
+  if (isset($block_data['shadow']) && $block_data['shadow']) {
+    return 
+      '<section id="block-' . $block_data['module'] . '-' . $block_data['delta'] . '" class="block bwh block-' . $block_data['module'] . (isset($block_data['class']) ? ' ' . $block_data['class'] : '') . '">' 
+        . '<div class="inside">'
+            . ( ($block['subject'] && (!isset($block_data['subject_visible']) || $block_data['subject_visible']) )
+                ? 
+                '<div class="block-icon pngfix"></div><' . $subjectTag . ' class="block-title">' . $block['subject'] . '</' . $subjectTag . '>'
+                :
+                '') 
+            . '<div class="content">' . $block['content'] . '</div>
+          </div> <!-- /.inside -->
+          <div class="shadow"></div>
+      </section>';
+  }
+  else {
+    return 
+      '<section id="block-' . $block_data['module'] . '-' . $block_data['delta'] . '" class="block bwh block-' . $block_data['module'] . (isset($block_data['class']) ? ' ' . $block_data['class'] : '') . '">' 
+         . ( ($block['subject'] && (!isset($block_data['subject_visible']) || $block_data['subject_visible']) )
+            ? 
+            '<div class="block-icon pngfix"></div><' . $subjectTag . ' class="block-title">' . $block['subject'] . '</' . $subjectTag . '>'
+            :
+            '') 
+         . '<div class="content">' . $block['content'] . '</div>
+      </section>';
+  }
+}
+
+
+/**
+ * Returns a content of a block wrapped in proper divs.
+ */
+function bwh_blocks_getBlockThemed_noCache($block_data){
+  
+  // No caching version.
+  
+  $block = module_invoke($block_data['module'], 'block_view', $block_data['delta']);
+
+  if ($block) {
+    if (isset($block_data['subject'])) {
+      $block['subject'] = $block_data['subject'];
+    }
+    elseif (@$block_data['no_subject']) {
+      $block['subject'] = '';
+    }
+    return bwh_blocks_wrapInBlockThemed($block_data, $block);
+  }
+  return NULL;
+  
+}
+
+
+/**
+ * Returns a content of a block wrapped in proper divs.
+ */
+function bwh_blocks_getBlockThemed($block_data, $cache_on = FALSE, $cache_expire_str = FALSE, $suffix = NULL)
+{
+
+  
+  
+  // No caching version.
+  
+  if (!$cache_on) {
+    return bwh_blocks_getBlockThemed_noCache($block_data);
+  }
+
+  
+  
+  // Caching system version.
+  
+  $cid = 'bwh-block-cache---' . $block_data['module'] . '-' . $block_data['delta'] . $suffix;
+  $cache = cache_get($cid, 'cache');
+
+  if ($cache && !empty($cache->data) && $cache->expire > time()) {
+    $out = $cache->data;
+  }
+  else {
+
+    if ($out = bwh_blocks_getBlockThemed_noCache($block_data)) {
+      if ($cache_expire_str) {
+        cache_set($cid, $out, 'cache', strtotime($cache_expire_str));
+      }
+      else {
+        cache_set($cid, $out, 'cache');
+      }
+      
+    }
+
+  } // End of else of if ($cache && !empty($cache->data) && $cache->expire > time()) {
+
+  return $out;
+}
+
+
+/**
+ * Returns a content of a block Get access to the VoIP footprint... Banner.
+ */
+function bwh_blocks_get_accessToFootprintBanner() {
+  return '<div class="link">' . l(t('Learn more'), '<front>') . '</div>';
+}
+
+
+/**
+ * Block Request a quote with a multistep form v6.
+ */
+function bwh_blocks_get_requestQuote_block_v1() {
+  
+  global $user;
+  
+  drupal_add_library('system', 'ui.core');
+  drupal_add_library('system', 'ui.widget');
+  drupal_add_library('system', 'ui.position');  
+//  drupal_add_library('system', 'ui.draggable');
+//  drupal_add_library('system', 'ui.slider');  
+
+  drupal_add_js('sites/all/libraries/jquery.plugins/jquery.hint-with-password.js');
+  
+  //Captcha
+  //drupal_add_js('sites/all/libraries/jquery.plugins/jquery.realperson/jquery.realperson.js');
+  
+//  drupal_add_js('sites/all/libraries/jquery.plugins/QapTcha-master/jquery/jquery.js');
+//  drupal_add_js('sites/all/libraries/jquery.plugins/QapTcha-master/jquery/jquery-ui.js');
+  //drupal_add_js('sites/all/libraries/jquery.plugins/QapTcha-master/jquery/jquery.ui.touch.js');
+  //drupal_add_js('sites/all/libraries/jquery.plugins/QapTcha-master/jquery/QapTcha.jquery.js');
+  
+  
+  
+  $path_to_custom_js = drupal_get_path('module', 'bwh_blocks') . '/js/';
+  drupal_add_js($path_to_custom_js . 'bwh_requestquote_v1.js');
+  
+  $path_to_custom_js = 'sites/all/libraries/jquery.plugins/multipart_form/';
+  drupal_add_js($path_to_custom_js . 'jquery.form.js');
+  drupal_add_js($path_to_custom_js . 'jquery.validate.js');
+  drupal_add_js($path_to_custom_js . 'jquery.form.wizard-min.js');
+  
+  
+  
+  
+  // height: 140px; 
+  $token = md5(time()); //drupal_get_token('test');
+  $_SESSION['requestQuoteToken'] = $token;
+
+  $out = '
+   <div id="up">
+      <!--<div class="guide"></div>-->
+      <img src="/sites/all/themes/bwh/css/images/voipguide.png" />
+      <div class="text">
+        <ul>
+          <li>No Contracts & Easy Setup</li>
+          <li>Enterprise Phone Sytems</li>
+          <li>Unlimited Calling & Faxing</li>
+        </ul>
+        <div class="guide-text">Plus a <strong>FREE</strong> VoIP Guide with Request</div>
+      </div>
+      <div class="bottom-clear"></div>
+   </div>
+   <div class="bottom-clear"></div>   
+   <div id="requestQuoteFormWrapper">
+        <div class="sending results" style="display: none;"></div>
+        <div class="success results" style="display: none;"></div>
+        <div class="fail results" style="display: none;">The Request has failed! <br>Something went wrong. <br>Please, contact the site administrator.</div>
+        
+        <form class="multipartForm bbq" method="post" action="/request" style="overflow: hidden;">
+
+                
+                <div id="fieldWrapper">
+                    
+                    <div class="step" id="questions_section">
+                           
+                                <div class="wrapper top first">
+                                  <div class="question">Lines needed:</div>
+                                  <select name="phones_amt" id="phones_amt" class="input required">
+                                    <!-- <option value="1 - 4">1 - 4</option> -->
+                                    <option value="1">1</option>
+                                    <option value="2 - 4">2 - 4</option>
+                                    <option selected="selected" value="5 - 10">5 - 10</option>
+                                    <option value="11 - 20">11 - 20</option>
+                                    <option value="21 - 50">21 - 50</option>
+                                    <option value="More than 50">More than 50</option>
+                                  </select>
+                                </div>
+
+                                <div class="wrapper top">
+                                  <div class="question">Service For:</div>
+                                  <select name="q_type" id="q_type" class="input required">
+                                    <option selected="selected" value="Business">Business</option>
+                                    <option value="Home">Home</option>
+                                    <option value="Home-Based Business">Home-Based Business</option>
+                                  </select>
+                                </div>
+
+
+                                <div class="wrapper top last">
+                                  <div class="question">Buying time frame:</div>
+                                  <select name="buying_time" id="buying_time" class="input required">
+                                    <!--<option value="">- Select a value -</option>-->
+                                    <option value="ASAP">ASAP</option>
+                                    <option value="1-3 Months">1-3 Months</option>
+                                    <option value="3-6 Months">3-6 Months</option>
+                                  </select>
+                                </div>
+                          
+
+                            <div class="bottom-clear"></div>
+                            
+                            <div class="quote-pic"></div>
+                              
+                            <!--<div id="on_error"></div>-->
+
+                            <div class="step-notice">' . t('Step <span class="f">!first</span>of<span class="s">!second</span>', array('!first' => 1, '!second' => 2)) . '</div>
+                                
+
+                    </div>
+
+
+
+                    
+
+
+                    <div class="step" id="personal_data">
+                    
+           
+                            
+                                <div class="wrapper middle first">
+                                    <input class="after required firstname" name="firstname" id="firstname" title="First Name *" />
+                                </div>
+
+                                <div class="wrapper middle">
+                                    <input class="after required lastname" name="lastname" id="lastname" title="Last Name *" />
+                                </div>
+
+                                <div class="wrapper middle last">
+                                    <input class="after email required" name="email" id="email" title="Email Address *" />
+                                </div>
+
+                                <div class="wrapper middle phone">
+                                    <input class="after required phone" name="phone" id="phone" value="" title="Phone Number *" />
+                                </div>
+
+                                <div class="wrapper middle company">
+                                    <input class="after" name="company" id="company" title="Company" />
+                                </div>
+                                
+
+                                ' 
+          /*
+          . ($user->uid == 1 ? 
+                                    
+                                    
+//                                    '
+//                                <div class="wrapper middle bwh-captcha">
+//                                    <input class="after" name="defaultReal" id="defaultReal" title="Captcha" />
+//                                </div>' 
+                                    
+//                                    '<div class="QapTcha"></div>'
+                                    
+   
+//  '<div class="bwh-captcha">
+//    <img id="siimage" style="border: 1px solid #000; margin-right: 15px" src="/sites/all/libraries/jquery.plugins/securimage/securimage_show.php?sid=' . md5(uniqid()) . '" alt="CAPTCHA Image" align="left" />
+//    <object id="play-btn" type="application/x-shockwave-flash" data="/sites/all/libraries/jquery.plugins/securimage/securimage_play.swf?bgcol=#ffffff&amp;icon_file=/sites/all/libraries/jquery.plugins/securimage/images/audio_icon.png&amp;audio_file=/sites/all/libraries/jquery.plugins/securimage/securimage_play.php" height="32" width="32">
+//    <param name="movie" value="/sites/all/libraries/jquery.plugins/securimage/securimage_play.swf?bgcol=#ffffff&amp;icon_file=/sites/all/libraries/jquery.plugins/securimage/images/audio_icon.png&amp;audio_file=/sites/all/libraries/jquery.plugins/securimage/securimage_play.php" />
+//    </object>
+//
+//    <a id="reload-btn" tabindex="-1" style="border-style: none;" href="#" title="Refresh Image" onclick="document.getElementById(' . "'siimage'" . ').src = ' . "'/sites/all/libraries/jquery.plugins/securimage/securimage_show.php?sid='" . ' + Math.random(); this.blur(); return false"><img src="/sites/all/libraries/jquery.plugins/securimage/images/refresh.png" alt="Reload Image" height="32" width="32" onclick="this.blur()" align="bottom" border="0" /></a>
+//    <div id="code">Enter Code*:</div>' . @$_SESSION["ctform"]["captcha_error"] . '
+//    <input type="text" id="ct_captcha" name="ct_captcha" size="12" maxlength="16" />
+//  </div>'
+                     
+                                    
+  '<div class="bwh-captcha">
+    <img id="siimage" style="border: 1px solid #000; margin-right: 15px" src="/securimage_show?sid=' . md5(uniqid()) . '" alt="CAPTCHA Image" align="left" />
+    <object id="play-btn" type="application/x-shockwave-flash" data="/sites/all/libraries/jquery.plugins/securimage/securimage_play.swf?bgcol=#ffffff&amp;icon_file=/sites/all/libraries/jquery.plugins/securimage/images/audio_icon.png&amp;audio_file=/sites/all/libraries/jquery.plugins/securimage/securimage_play.php" height="32" width="32">
+    <param name="movie" value="/sites/all/libraries/jquery.plugins/securimage/securimage_play.swf?bgcol=#ffffff&amp;icon_file=/sites/all/libraries/jquery.plugins/securimage/images/audio_icon.png&amp;audio_file=/sites/all/libraries/jquery.plugins/securimage/securimage_play.php" />
+    </object>
+
+    <a id="reload-btn" tabindex="-1" style="border-style: none;" href="#" title="Refresh Image" onclick="document.getElementById(' . "'siimage'" . ').src = ' . "'/securimage_show?sid='" . ' + Math.random(); this.blur(); return false"><img src="/sites/all/libraries/jquery.plugins/securimage/images/refresh.png" alt="Reload Image" height="32" width="32" onclick="this.blur()" align="bottom" border="0" /></a>
+    <div id="code">Enter Code*:</div>' . @$_SESSION["ctform"]["captcha_error"] . '
+    <input type="text" class="required ct_captcha" id="ct_captcha" name="ct_captcha" size="12" maxlength="16" />
+  </div>'
+  
+                                    
+                                    : '') 
+    */
+    . '<div class="bwh-captcha">
+    <img id="siimage" style="border: 1px solid #000; margin-right: 15px" src="/securimage_show?sid=' . md5(uniqid()) . '" alt="CAPTCHA Image" align="left" />
+    <object id="play-btn" type="application/x-shockwave-flash" data="/sites/all/libraries/jquery.plugins/securimage/securimage_play.swf?bgcol=#ffffff&amp;icon_file=/sites/all/libraries/jquery.plugins/securimage/images/audio_icon.png&amp;audio_file=/sites/all/libraries/jquery.plugins/securimage/securimage_play.php" height="32" width="32">
+    <param name="movie" value="/sites/all/libraries/jquery.plugins/securimage/securimage_play.swf?bgcol=#ffffff&amp;icon_file=/sites/all/libraries/jquery.plugins/securimage/images/audio_icon.png&amp;audio_file=/sites/all/libraries/jquery.plugins/securimage/securimage_play.php" />
+    </object>
+
+    <a id="reload-btn" tabindex="-1" style="border-style: none;" href="#" title="Refresh Image" onclick="document.getElementById(' . "'siimage'" . ').src = ' . "'/securimage_show?sid='" . ' + Math.random(); this.blur(); return false"><img src="/sites/all/libraries/jquery.plugins/securimage/images/refresh.png" alt="Reload Image" height="32" width="32" onclick="this.blur()" align="bottom" border="0" /></a>
+    <div id="code">Enter Code*:</div>' . /* @$_SESSION["ctform"]["captcha_error"] .*/ '
+    <input type="text" class="required ct_captcha" id="ct_captcha" name="ct_captcha" size="12" maxlength="16" />
+  </div>'
+    
+    . ' 
+
+                            <div class="bottom-clear"></div>
+                            
+          
+                            
+                            <!--<div id="on_error"></div>-->
+
+                            <div class="protected"></div>
+
+                    </div>
+
+
+                
+                </div>
+                
+                
+            
+                <div id="Navigation"> 							
+                        <input class="navigation_button" id="back" value="Back" type="reset" />
+                        <input class="navigation_button" id="next" value="Get Quotes" type="submit" />
+                </div>
+                
+                
+                <input type="hidden" name="token" value="' . $token . '" />
+                <input type="hidden" name="source" value="block" />
+                <input type="hidden" name="version" value="1" />
+                <input type="hidden" name="referrer" value="" />
+                <input type="hidden" name="url" value="" />
+                
+        </form>
+
+        <p id="data"></p>
+</div>
+<div class="block_footer"></div>
+  ';
+  
+  return $out;
+}
+

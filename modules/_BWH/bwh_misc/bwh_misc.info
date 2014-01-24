@@ -1,0 +1,6 @@
+name = BWH Misc
+package = BWH
+description = "Miscelanious helper functions and hooks implementations"
+core = 7.x
+tags[] = BWH
+files[] = bwh_misc.module

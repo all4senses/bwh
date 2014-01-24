@@ -1,0 +1,6 @@
+name = BWH Blocks
+package = BWH
+description = "Defines different blocks for the site including ones for side bars and MegaMenu"
+core = 7.x
+tags[] = BWH
+files[] = bwh_blocks.module
