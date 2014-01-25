@@ -4769,7 +4769,7 @@ function bwh_misc_getProviders(&$providers, $scope = 'all', $data = NULL, $cache
       $query->leftJoin('field_data_field_p_listposition_sh', 'l_sh', "l_sh.entity_id = n.nid");
       
       $or = db_or()->isNotNull('field_p_listposition_value')
-                   ->isNotNull('field_p_listposition_bwh_value')
+                   ->isNotNull('field_p_listposition_ch_value')
                    ->isNotNull('field_p_listposition_vps_value')
                    ->isNotNull('field_p_listposition_ds_value')
                    ->isNotNull('field_p_listposition_wp_value')
