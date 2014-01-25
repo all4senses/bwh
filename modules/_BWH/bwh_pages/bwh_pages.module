@@ -1568,7 +1568,8 @@ function bwh_pages_requestsList_form($form, &$form_state) {
   
   //$form['actions']['submit']['#submit'][] = 'bwh_pages_quoteRequestsList_formSubmit';
   //$form['#submit'][] = 'bwh_pages_quoteRequestsList_formSubmit';
-  $form['#validate'][] = 'bwh_pages_quoteRequestsList_formValidate';
+  ////$form['#validate'][] = 'bwh_pages_quoteRequestsList_formValidate';
+  $form['#validate'][] = 'bwh_pages_requestsList_formValidate';
   
   
   return $form;
