@@ -1,11 +1,11 @@
 
 ;----------// Theme Information
 
-name = CH
-description = CH main theme
+name = BWH
+description = BWH main theme
 core = 7.x
 engine = phptemplate
-project = "CH Themes"
+project = "BWH Themes"
 
 
 ;----------// Modular stylesheets
