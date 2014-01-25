@@ -443,7 +443,7 @@ function bwh_misc_js_alter(&$javascript) {
         if (isset($bwh_minified_js[$filename])) {
           $javascript[$filename]['data'] = $bwh_minified_js[$filename];
         }
-        elseif (strpos($filename, '.js') && !strpos($attr['data'], 'min.js') && !strpos($attr['data'], 'jsmin-ch')) {
+        elseif (strpos($filename, '.js') && !strpos($attr['data'], 'min.js') && !strpos($attr['data'], 'jsmin-bwh')) {
           $add_to_minified[$filename] = $attr;
         }
       }
@@ -460,14 +460,14 @@ function bwh_misc_js_alter(&$javascript) {
     
       foreach($add_to_minified as $filename => $attr){
 
-        if(!$from_scratch || (strpos($filename, '.js') && !strpos($attr['data'], 'min.js') && !strpos($attr['data'], 'jsmin-ch'))) {
+        if(!$from_scratch || (strpos($filename, '.js') && !strpos($attr['data'], 'min.js') && !strpos($attr['data'], 'jsmin-bwh'))) {
 
           $source_fpath_short = $attr['data'];
           $source_fpath = DRUPAL_ROOT . '/' . $source_fpath_short;
 
           if ($source_content = file_get_contents($source_fpath)) {
             if ($minOutput = JSMin::minify($source_content)) {
-              $target_path_short = 'f/jsmin-ch/' . str_replace('/', '-', $source_fpath_short);
+              $target_path_short = 'f/jsmin-bwh/' . str_replace('/', '-', $source_fpath_short);
               if (file_put_contents(DRUPAL_ROOT . '/' . $target_path_short, $minOutput)) {
                 $bwh_minified_js[$filename] = $target_path_short;
                 $javascript[$filename]['data'] = $bwh_minified_js[$filename];
@@ -475,7 +475,7 @@ function bwh_misc_js_alter(&$javascript) {
             }
           }
 
-        } // End of if(strpos($filename, '.js') && !strpos($attr['data'], "min.js") && !strpos($attr['data'], "jsmin-ch")) {
+        } // End of if(strpos($filename, '.js') && !strpos($attr['data'], "min.js") && !strpos($attr['data'], "jsmin-bwh")) {
 
       } // End of foreach($javascript as $filename => $attr){
       
@@ -504,7 +504,7 @@ function bwh_misc_flush_caches() {
   // Remove all minified files from jsmin-bwh folder.
   // Uncomment in case ov changing any js
   
-//  $dir = 'f/jsmin-ch';
+//  $dir = 'f/jsmin-bwh';
 //  $objects = scandir($dir);
 //  foreach ($objects as $object) {
 //    if ($object != "." && $object != "..") {
