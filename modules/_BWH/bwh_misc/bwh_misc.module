@@ -178,9 +178,6 @@ function bwh_misc_menu_alter(&$items) {
   unset($items['taxonomy/term/%taxonomy_term/feed']); // If you want to hide the feed as well.
 }
 
-function ch_misc_getProviderQuickData() {
-  return NULL;
-}
 
 /**
  * Define pages (urls) that should be shown as Gone 410 (instead of 404)
