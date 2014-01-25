@@ -591,7 +591,9 @@ function bwh_process_page(&$variables) {
   // Set a user referer.
   $module_path_misc = drupal_get_path('module', 'bwh_misc');
   drupal_add_js( $module_path_misc . '/js/bwh_setReferer.js'); 
-  drupal_add_js( $module_path_misc . '/js/bwh_addBounceX.js'); 
+  
+  // Add a BounceX popup window
+  //drupal_add_js( $module_path_misc . '/js/bwh_addBounceX.js'); 
   
   
   /* Add Google's fonts */

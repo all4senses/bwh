@@ -3,7 +3,7 @@
   Drupal.behaviors.bwh_addBounceX = {
     attach: function (context, settings) {
        
-        console.log('bwh_addBounceX');
+        //console.log('bwh_addBounceX');
        
         (function(d) {
             var e = d.createElement('script');
