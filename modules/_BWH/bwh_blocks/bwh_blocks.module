@@ -355,7 +355,7 @@ function bwh_blocks_block_save($delta = '', $edit = array()) {
  * Block with writer admin links.
  */
 function bwh_blocks_getWriterAdminLinks() {
-  return '<a href="/admin/content-ch?service=All">Add/Edit Content</a><a href="/cc">Clear Cache</a>';
+  return '<a href="/admin/content-bwh?service=All">Add/Edit Content</a><a href="/cc">Clear Cache</a>';
 }
 
 
