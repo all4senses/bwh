@@ -36,10 +36,10 @@
                   <div typeof="Organization">
                     <div>
                       <?php 
-                        if (!$node->p_data['info']['i_web_hide'] && !empty($node->p_data['info']['i_web'])) {
-                          $goto_link_title = (isset($node->p_data['info']['i_web_display']) && $node->p_data['info']['i_web_display']) ? $node->p_data['info']['i_web_display'] : str_replace(array('http://', 'https://'), '', $node->p_data['info']['i_web']);
-                          echo '<span class="title">Website:</span>' . bwh_misc_getTrackingUrl($goto_link_title, NULL, $node->nid, NULL, NULL, array('key' => 'rel', 'value' => 'v:url'));
-                        }
+//                        if (!$node->p_data['info']['i_web_hide'] && !empty($node->p_data['info']['i_web'])) {
+//                          $goto_link_title = (isset($node->p_data['info']['i_web_display']) && $node->p_data['info']['i_web_display']) ? $node->p_data['info']['i_web_display'] : str_replace(array('http://', 'https://'), '', $node->p_data['info']['i_web']);
+//                          echo '<span class="title">Website:</span>' . bwh_misc_getTrackingUrl($goto_link_title, NULL, $node->nid, NULL, NULL, array('key' => 'rel', 'value' => 'v:url'));
+//                        }
                         ?>
                     </div>
                   </div>
