@@ -184,7 +184,7 @@
 
       <!--<div id="in-touch"></div> -->
       
-      
+      <div id="logo-footer"></div>
         
       <?php 
         
@@ -194,13 +194,16 @@
         ////echo bwh_blocks_getBlockThemed(array('module' => 'bwh_blocks', 'delta' => 'social_links', 'no_subject' => TRUE/*, 'class' => 'block-om-maximenu'*/, 'shadow' => FALSE)/*, TRUE, '+31 day'*/ /*, ($user->uid ? '_logged' : NULL)*/);
         //echo bwh_blocks_getBlockThemed(array('module' => 'bwh_blocks', 'delta' => 'footer_menu', 'no_subject' => TRUE/*, 'class' => 'block-om-maximenu'*/, 'shadow' => FALSE)/*, TRUE, '+31 day'*/ /*, ($user->uid ? '_logged' : NULL)*/);
         
-        echo bwh_blocks_get_footerLinks() . '<div class="c">© 2014 Bestwebhosting.ca | All Rights Reserved</div>';
+        echo bwh_blocks_get_footerLinks();
         
                 
         //echo '<div id="block-bwh-blocks-follow-links"><div class="follow-us">Follow Us</div>', bwh_blocks_get_headerLinks(), '</div>';
       ?>
       
       
+      <div class="disclamer">Disclamer: BestWebHosting.ca is an independent provider comparison and shoppers guide, offering unbiased consumer reviews. We monetize from advertisers and affiliates. This does not influence the rankings and reviews on our website</div>
+      <div class="c">Copyrights 2014 bestwebhosting.ca  |  All Rights Reserved</div>
+
     </div>
   </footer> <!-- /#footer -->
   <?php /* 
