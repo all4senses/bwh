@@ -205,7 +205,7 @@ ul.header-links a.Submit.Reviews{background: url("images/block-head-red.png") re
 #footer ul {margin: 5px 0 17px 305px; overflow: hidden; color: white;}
 #footer .menu li{margin: 2px 2px 0 2px; float: left;}
 
-#footer .menu a{color: gray; font-size: 14px;}
+#footer .menu a{color: white; font-size: 14px;}
 #footer .menu a:hover {text-decoration: underline;}
 
 #footer .c {clear: both; padding: 15px 0 0;}
