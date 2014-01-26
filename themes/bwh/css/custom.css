@@ -177,7 +177,7 @@ ul.header-links a.Submit.Reviews{background: url("images/block-head-red.png") re
 /*#footer {color: gray; padding: 5px 0; text-align: center; font-size: 14px;}*/
 #footer {color: lightgray; padding: 5px 0; text-align: center; font-size: 14px; background: #353535; height: 220px;}
 
-#logo-footer {}
+#logo-footer {background: url(images/bwh-logo-footer.png) no-repeat 0 0 black; width: 200px; height: 100px;}
 
 #footer .region-footer{width: 560px; margin: auto;}
 
