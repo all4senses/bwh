@@ -9,7 +9,7 @@
 
       </div>
 
-      <div class="intro">COMPARE OUR TOP WEB HOSTING PICKS<div>UPDATED JANUARY 2014</div></div>  
+      <!--<div class="intro">COMPARE OUR TOP WEB HOSTING PICKS<div>UPDATED JANUARY 2014</div></div>  -->
 
       <nav id="navigation" role="navigation" class="clearfix">
         <!--<div id="header-menu-back"></div>-->
@@ -142,10 +142,14 @@
       <?php 
         
         echo render($page['footer']);
-        echo bwh_blocks_get_footerLinks() . '<div class="c">© 2014 bestwebhosting.ca | All Rights Reserved</div>';
+        echo bwh_blocks_get_footerLinks();
         
       ?>
       
+      
+      <div id="disclamer">Disclamer: BestWebHosting.ca is an independent provider comparison and shoppers guide, offering unbiased consumer reviews. We monetize from advertisers and affiliates. This does not influence the rankings and reviews on our website</div>
+      <div class="c">Copyrights 2014 bestwebhosting.ca  |  All Rights Reserved</div>
+
       
     </div>
   </footer> <!-- /#footer -->
