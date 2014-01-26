@@ -1,6 +1,6 @@
 <?php
 
-echo 'xxx';
+echo $node->title;
 return;
 
 ?>
