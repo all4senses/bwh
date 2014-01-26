@@ -35,7 +35,9 @@ a, a:focus{ -webkit-appearance: none; outline: none;}
 
 /*#c-top{background: url(images/top-back3.jpg) repeat-x scroll 0 bottom #484848; height: 112px;}*/
 /*#c-top{height: 125px; background: white; width: 1000px; margin: auto; box-shadow: 0px 10px 60px #DDDDDD,0 0px 7px gray;}*/
-#c-top {height: 290px; background: url("images/header-back.png") repeat-x right top white;}
+
+#c-top {height: 160px; background: url("images/header-back2.png") repeat-x right top white;}
+.front #c-top {height: 290px; background: url("images/header-back.png") repeat-x right top white;}
 
 .header{margin: auto; position: relative; width: 1000px;}
 
@@ -98,9 +100,11 @@ input.blur, textarea.blur,
 #footer-inside{position: relative;}
 
 /*#header {padding-top: 80px; z-index: 4;} */
-#header {z-index: 4; background: url("images/header-back-flag.png") no-repeat center 91px transparent; height: 206px;}
+#header {z-index: 4; height: 50px;}
+.front #header {background: url("images/header-back-flag.png") no-repeat center 91px transparent; height: 206px;}
 
-#header .intro {text-align: center; top: 80px; position: relative; color: white; font-size: 36px; text-shadow: 1px 2px 5px black;}
+#header .intro {display: none;}
+.front #header .intro {display: block; text-align: center; top: 80px; position: relative; color: white; font-size: 36px; text-shadow: 1px 2px 5px black;}
 #header .intro div {font-size: 20px; margin-top: 15px;}
 
 
@@ -236,7 +240,9 @@ ul.ch{margin-left: 0px; padding-left: 10px;}
 
 /*.block.block-om-maximenu{right: 0; position: absolute; top: 65px; z-index: 10; height: 45px; border-radius: 10px 10px 0 0;}*/
 /*.block.block-om-maximenu{position: absolute; top: 80px; z-index: 10; left: 115px;}*/
-.block.block-om-maximenu {z-index: 10; background: #706e6f; width: 100%; overflow: hidden; top: 245px; position: absolute;}
+.block.block-om-maximenu {z-index: 10; background: #706e6f; width: 100%; overflow: hidden; top: 110px; position: absolute;}
+.front .block.block-om-maximenu {top: 245px;}
+
 .block.block-om-maximenu .content {position: relative; left: 125px;}
 
 .om-btitle {float: left; position: absolute; left: -180px;}
