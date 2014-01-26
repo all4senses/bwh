@@ -100,6 +100,10 @@ input.blur, textarea.blur,
 /*#header {padding-top: 80px; z-index: 4;} */
 #header {z-index: 4; background: url("images/header-back-flag.png") no-repeat center 91px transparent; height: 206px;}
 
+#header .intro {text-align: center; top: 80px; position: relative; color: white; font-size: 36px; text-shadow: 1px 2px 5px black;}
+#header .intro div {font-size: 20px; margin-top: 15px;}
+
+
 #header-menu-back {background: #706e6f; height: 40px;}
 
 /* Search block */
