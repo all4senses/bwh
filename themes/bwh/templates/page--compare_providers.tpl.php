@@ -1,19 +1,22 @@
 <div id="c-top">
 
-    <header id="header" role="banner" class="clearfix">
-
-    <nav id="navigation" role="navigation" class="clearfix">
-      <div id="header-menu-back"></div>
+  <header id="header" role="banner" class="clearfix">
       
-      <div id="logo-block">
-        <a href="<?php print $front_page; ?>" title="<?php print 'VoIP Now Home'; ?>" id="logo">
-          <img src="<?php echo '/sites/all/themes/bwh/css/images/bwh-logo-main-top.png'; ?>" alt="BestWebHosting.ca" title="<?php print 'BestWebHosting.ca Home'; ?>" />
-        </a>
-        
-      </div>
+    <div id="logo-block">
+      <a href="<?php print $front_page; ?>" title="<?php print 'bestwebhosting.ca'; ?>" id="logo">
+        <img src="<?php echo '/sites/all/themes/bwh/css/images/bwh-logo-main-top.png'; ?>" alt="bestwebhosting.ca" title="<?php print 'bestwebhosting.ca Home'; ?>" />
+      </a>
+
+    </div>
+      
+    <div class="intro">COMPARE OUR TOP WEB HOSTING PICKS<div>UPDATED JANUARY 2014</div></div>  
+      
+    <nav id="navigation" role="navigation" class="clearfix">
+      <!--<div id="header-menu-back"></div>-->
+      
       
       <?php 
-          global $user;
+          //global $user;
 
 //        if ($user->uid == 1) {
           echo /*'<a id="itexpo" href="http://bestwebhosting.ca/blog/tags/itexpo-2012"></a>',*/ render($page['header']); 
