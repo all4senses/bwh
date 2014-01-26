@@ -97,7 +97,8 @@ input.blur, textarea.blur,
 #header, #navigation, #all-content, #footer-inside{width: 1000px; margin: auto;}
 #footer-inside{position: relative;}
 
-#header{padding-top: 80px; z-index: 4;}
+/*#header {padding-top: 80px; z-index: 4;} */
+#header {z-index: 4; background: url("images/header-back-flag.png") no-repeat center 91px transparent; height: 206px;}
 
 #header-menu-back {background: #706e6f; height: 40px;}
 
