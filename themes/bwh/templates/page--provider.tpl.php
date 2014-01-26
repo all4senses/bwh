@@ -137,7 +137,7 @@
 
       <!--<div id="in-touch"></div> -->
       
-      
+      <div id="logo-footer"></div> 
         
       <?php 
         
