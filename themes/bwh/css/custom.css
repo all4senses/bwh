@@ -229,7 +229,7 @@ ul.ch{margin-left: 0px; padding-left: 10px;}
 
 /*.block.block-om-maximenu{right: 0; position: absolute; top: 65px; z-index: 10; height: 45px; border-radius: 10px 10px 0 0;}*/
 /*.block.block-om-maximenu{position: absolute; top: 80px; z-index: 10; left: 115px;}*/
-.block.block-om-maximenu {z-index: 10; background: #706e6f; width: 100%; overflow: hidden; top: 165px;}
+.block.block-om-maximenu {z-index: 10; background: #706e6f; width: 100%; overflow: hidden; top: 245px; position: absolute;}
 .block.block-om-maximenu .content {position: relative; left: 125px;}
 
 .om-btitle {float: left; position: absolute; left: -180px;}
