@@ -1895,62 +1895,13 @@ function bwh_pages_access($type = null) {
 function bwh_pages_buildHome($name = NULL, $data  = NULL) {
   $out = '';
     
-  $seo_welcome_node = bwh_misc_getPrefaceByKey('front');
-  $seo_welcome_node->title_no_link = TRUE;
-  $seo_welcome_node->title_h2 = TRUE;
-  $seo_welcome_node_view = node_view($seo_welcome_node, 'full');
-
-  // Uncomment to hide a main part of the preface from the main content region.
-//  global $user;
-//  if (!$user->uid) {
-    $out .= render($seo_welcome_node_view);
-//  }
-    
-//     // Get block for Featured Providers.
-//     $block_data = array('module' => 'views', 'delta' => 'providers-block_chart_featured_providers');
-//     $out .= bwh_blocks_getBlockThemed($block_data);
-//  
-//     $block_data = array('module' => 'views', 'delta' => 'blog-block_home_blog_teasers');
-//     $out .= bwh_blocks_getBlockThemed($block_data);
-//  
-    
-    
-    
-    
-    
-    
-    ////$block_data = array('module' => 'views', 'delta' => 'providers-block_top_bwh_providers_table');
-    ////$out .= bwh_blocks_getBlockThemed($block_data);
-  
-  
-    
-    
-    
-    
-  // Content of a home page saved in db as a var.
-  // $out .= theme($name, array('data' => $data));
-  
-  // Get block for Latest VoIP articles (+ news, blog posts, etc).
-  // $block_data = array('module' => 'views', 'delta' => 'articles-block');
-  // $out .= bwh_blocks_getBlockThemed($block_data);
-  
-  // Get block for Top pick business providers.
-//  $block_data = array('module' => 'views', 'delta' => 'providers-block', 'shadow' => FALSE);
-//  $out .= bwh_blocks_getBlockThemed($block_data);
- 
-  // Get block for Top pick residential providers.
-//  $block_data = array('module' => 'views', 'delta' => 'providers-block_1', 'shadow' => FALSE); 
-//  $out .= bwh_blocks_getBlockThemed($block_data);
-  
-//  $out .='<div id="bottom-with-latest-articles" class="with-articles preface">';
-//  
-      $out .= render($seo_welcome_node_view['field_preface_bottom']);
+//  $seo_welcome_node = bwh_misc_getPrefaceByKey('front');
+//  $seo_welcome_node->title_no_link = TRUE;
+//  $seo_welcome_node->title_h2 = TRUE;
+//  $seo_welcome_node_view = node_view($seo_welcome_node, 'full');
 //
-//      // Get block for All latest articles (news, blogs)Top pick residential providers.
-//      $block_data = array('module' => 'views', 'delta' => 'articles-block_home_all_latest_articles', 'shadow' => FALSE); 
-//      $out .= bwh_blocks_getBlockThemed($block_data);
-//      
-//  $out .='<div class="bottom-clear"></div></div>';
+//  $out .= render($seo_welcome_node_view);
+//  $out .= render($seo_welcome_node_view['field_preface_bottom']);
   
   return $out;
 }
