@@ -650,7 +650,15 @@ function bwh_preprocess_node(&$variables) {
     }
     
     elseif($variables['node']->type == 'provider' && arg(2) != 'edit') {
-      $variables['theme_hook_suggestions'][] = 'node__provider_page';
+      
+      if($variables['view_mode'] == 'teaser') {
+        $variables['theme_hook_suggestions'][] = 'node__' . $variables['node']->type . '__teaser';   
+        $variables['theme_hook_suggestions'][] = 'node__' . $variables['node']->nid . '__teaser';
+      }
+      else {
+        $variables['theme_hook_suggestions'][] = 'node__provider_page';
+      }
+      //$variables['theme_hook_suggestions'][] = 'node__' . $variables['type'] . '__' . $variables['view_mode'];
     }
     
   }
