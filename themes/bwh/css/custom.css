@@ -35,7 +35,7 @@ a, a:focus{ -webkit-appearance: none; outline: none;}
 
 /*#c-top{background: url(images/top-back3.jpg) repeat-x scroll 0 bottom #484848; height: 112px;}*/
 /*#c-top{height: 125px; background: white; width: 1000px; margin: auto; box-shadow: 0px 10px 60px #DDDDDD,0 0px 7px gray;}*/
-#c-top {height: 290px; background: url("/sites/all/themes/bwh/css/images/header-back.png") repeat-x right top white;}
+#c-top {height: 290px; background: url("images/header-back.png") repeat-x right top white;}
 
 .header{margin: auto; position: relative; width: 1000px;}
 
