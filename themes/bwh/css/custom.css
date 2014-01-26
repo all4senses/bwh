@@ -175,9 +175,9 @@ ul.header-links a.Submit.Reviews{background: url("images/block-head-red.png") re
 
 /*#footer {color: lightgray; padding: 5px 0; background: black; height: 210px;}*/
 /*#footer {color: gray; padding: 5px 0; text-align: center; font-size: 14px;}*/
-#footer {color: lightgray; padding: 5px 0; text-align: center; font-size: 14px; background: #353535; height: 220px;}
+#footer {color: gray; padding: 5px 0; text-align: center; font-size: 14px; background: #353535; height: 270px;}
 
-#logo-footer {background: url(images/bwh-logo-footer.png) no-repeat 0 0 black; width: 200px; height: 100px;}
+#logo-footer {background: url(/sites/all/themes/bwh/css/images/bwh-logo-footer.png) no-repeat 0 0; width: 325px; height: 25px; margin: 45px auto 40px;}
 
 #footer .region-footer{width: 560px; margin: auto;}
 
@@ -202,14 +202,14 @@ ul.header-links a.Submit.Reviews{background: url("images/block-head-red.png") re
 #under-footer .c {color: gray; font-size: 12px; width: 1000px; margin: auto;}
 */
 
-#footer ul {margin: 5px 0 0 321px; overflow: hidden;}
+#footer ul {margin: 5px 0 17px 305px; overflow: hidden; color: white;}
 #footer .menu li{margin: 2px 2px 0 2px; float: left;}
 
 #footer .menu a{color: gray; font-size: 14px;}
 #footer .menu a:hover {text-decoration: underline;}
 
-#footer .c {clear: both; padding: 5px 0 0;}
-
+#footer .c {clear: both; padding: 15px 0 0;}
+#footer #disclamer {width: 800px; margin: auto;}
 
 
 footer .share {border-top: solid 1px lightgray; padding: 15px 0;}
