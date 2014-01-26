@@ -201,7 +201,7 @@
       ?>
       
       
-      <div class="disclamer">Disclamer: BestWebHosting.ca is an independent provider comparison and shoppers guide, offering unbiased consumer reviews. We monetize from advertisers and affiliates. This does not influence the rankings and reviews on our website</div>
+      <div id="disclamer">Disclamer: BestWebHosting.ca is an independent provider comparison and shoppers guide, offering unbiased consumer reviews. We monetize from advertisers and affiliates. This does not influence the rankings and reviews on our website</div>
       <div class="c">Copyrights 2014 bestwebhosting.ca  |  All Rights Reserved</div>
 
     </div>
