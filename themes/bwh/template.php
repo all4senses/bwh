@@ -559,14 +559,17 @@ function bwh_breadcrumb($variables) {
  */
 function bwh_process_page(&$variables) {
   
-  dpm($_GET);
-  dpm($_SERVER);
-  dpm($variables['node']);
+  //dpm($_GET);
+  //dpm($_SERVER);
+  //dpm($variables['node']);
   
   //dpm($variables);
   //$variables['breadcrumb'] = theme('breadcrumb', array('breadcrumb' => drupal_get_breadcrumb()));
   //array(l(t('Home'), NULL), l(t('Blogs'), 'blog'), l(t("!name's blog", array('!name' => format_username($node))), 'blog/' . $node->uid))
   
+  if (@$_GET['q'] == 'home') {
+    $variables['theme_hook_suggestions'][] = 'page__compare_providers';
+  }
   if(isset($variables['node'])) {
     if (arg(2) != 'edit') {
       $variables['theme_hook_suggestions'][] = 'page__' . $variables['node']->type;
