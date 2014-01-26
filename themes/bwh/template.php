@@ -559,6 +559,9 @@ function bwh_breadcrumb($variables) {
  */
 function bwh_process_page(&$variables) {
   
+  dpm($_GET);
+  dpm($_SEFRVER);
+  //dpm($variables);
   //$variables['breadcrumb'] = theme('breadcrumb', array('breadcrumb' => drupal_get_breadcrumb()));
   //array(l(t('Home'), NULL), l(t('Blogs'), 'blog'), l(t("!name's blog", array('!name' => format_username($node))), 'blog/' . $node->uid))
   
