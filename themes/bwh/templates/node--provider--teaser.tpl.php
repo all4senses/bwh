@@ -9,7 +9,7 @@
 //dpm($all_data_quick[$node->nid]);
 //dpm($node->p_data);
 //dpm($content);
-dpm($node);
+//dpm($node);
 
 ?>
 
@@ -53,12 +53,13 @@ dpm($node);
                 <div class="basic-info" rel="v:itemreviewed">
                   <div typeof="Organization">
                     <div>
-                      <?php 
+                      <?php
+
                         if (!$node->p_data['info']['i_web_hide'] && !empty($node->p_data['info']['i_web'])) {
-                          $goto_link_title = (isset($node->p_data['info']['i_web_display']) && $node->p_data['info']['i_web_display']) ? $node->p_data['info']['i_web_display'] : str_replace(array('http://', 'https://'), '', $node->p_data['info']['i_web']);
-                          echo '<span class="title">Website:</span>' . bwh_misc_getTrackingUrl($goto_link_title, NULL, $node->nid, NULL, NULL, array('key' => 'rel', 'value' => 'v:url'));
+                          echo '<div class="site">' , bwh_misc_getTrackingUrl('Visit ' . $node->field_p_name['und'][0]['value'], NULL, $node->nid), '</div>';
                         }
-                        ?>
+                      ?>  
+
                     </div>
                   </div>
                 </div>
@@ -67,12 +68,6 @@ dpm($node);
               </div> <!-- <div class="logo share">-->
                 
                           
-                <?php
-
-                  if (!$node->p_data['info']['i_web_hide'] && !empty($node->p_data['info']['i_web'])) {
-                    echo '<div class="site">' , bwh_misc_getTrackingUrl('Visit ' . $node->field_p_name['und'][0]['value'], NULL, $node->nid), '</div>';
-                  }
-                ?>  
                 
              </div>
               
@@ -83,12 +78,6 @@ dpm($node);
               
               
               
-          
-                <?php
-                  if (isset($content['field_p_logo'][0]['#item']['uri'])) {
-                    echo '<div class="logo">' . theme('image_style', array( 'path' =>  $content['field_p_logo'][0]['#item']['uri'], 'style_name' => 'logo_provider_page')) . '</div>';
-                  }
-                ?>
           
               <?php echo render($content['body']); ?>
           
