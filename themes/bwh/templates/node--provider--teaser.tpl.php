@@ -8,7 +8,7 @@
 // 
 //dpm($all_data_quick[$node->nid]);
 //dpm($node->p_data);
-dpm($content);
+//dpm($content);
 dpm($node);
 
 ?>
