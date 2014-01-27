@@ -6,7 +6,7 @@ if (!$all_data_quick) {
   $all_data_quick = bwh_misc_getProvidersDataQuick();
 }
  
-dpm($node->nid);
+dpm($all_data_quick[$node->nid]);
 dpm($node->p_data);
 
 ?>
