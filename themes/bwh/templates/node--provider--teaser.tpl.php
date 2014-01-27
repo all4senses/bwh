@@ -1,3 +1,16 @@
+<?php 
+
+static $all_data_quick;
+
+if (!$all_data_quick) {
+  $all_data_quick = bwh_misc_getProvidersDataQuick();
+}
+ 
+dpm($node->nid);
+dpm($node->p_data);
+
+?>
+
 
   <article id="node-<?php print $node->nid; ?>" class="<?php print $classes; ?> clearfix"<?php print $attributes; ?>>
            
