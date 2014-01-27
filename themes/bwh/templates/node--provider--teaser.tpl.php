@@ -38,8 +38,11 @@ dpm($node);
               <div class="logo-info">
                 
                 <?php
-                  if (isset($content['field_p_logo'][0]['#item']['uri'])) {
-                    echo '<div class="logo">' . bwh_misc_getTrackingUrl(theme('image_style', array( 'path' =>  $content['field_p_logo'][0]['#item']['uri'], 'style_name' => 'logo_provider_page', 'alt' => $content['field_p_logo'][0]['#item']['alt'], 'title' => $content['field_p_logo'][0]['#item']['title'], 'attributes' => array('rel' => 'v:photo'))), NULL, $node->nid) . '</div>';
+                
+                  if (isset($node->field_p_logo['und'][0]['uri'])) {
+                  //if (isset($content['field_p_logo'][0]['#item']['uri'])) {
+                    //echo '<div class="logo">' . bwh_misc_getTrackingUrl(theme('image_style', array( 'path' =>  $content['field_p_logo'][0]['#item']['uri'], 'style_name' => 'logo_provider_page', 'alt' => $content['field_p_logo'][0]['#item']['alt'], 'title' => $content['field_p_logo'][0]['#item']['title'], 'attributes' => array('rel' => 'v:photo'))), NULL, $node->nid) . '</div>';
+                    echo '<div class="logo">' . bwh_misc_getTrackingUrl(theme('image_style', array( 'path' =>  $node->field_p_logo['und'][0]['uri'], 'style_name' => 'logo_provider_page', 'alt' => $node->field_p_logo['und'][0]['alt'], 'title' => $node->field_p_logo['und'][0]['title'], 'attributes' => array('rel' => 'v:photo'))), NULL, $node->nid) . '</div>';
                   }
                   else {
                     echo render($title_prefix), '<h2', $title_attributes,'>', $node->field_p_name['und'][0]['value'] /*$content['field_p_name'][0]['#markup']*/, '</h2>', render($title_suffix);
