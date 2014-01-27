@@ -8,7 +8,7 @@
 // 
 //dpm($all_data_quick[$node->nid]);
 //dpm($node->p_data);
-dpm($content);
+//dpm($content);
 //dpm($node);
 
 ?>
@@ -80,6 +80,7 @@ dpm($content);
               
           
               <?php echo render($content['body']); ?>
+          <?php echo render($content); ?>
           
            
           
