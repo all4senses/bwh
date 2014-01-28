@@ -17,11 +17,12 @@
                 
                   if (isset($node->field_p_logo['und'][0]['uri'])) {
                     $logo = '<div class="logo">' . theme('image_style', array( 'path' =>  $node->field_p_logo['und'][0]['uri'], 'style_name' => 'logo_provider_page', 'alt' => $node->field_p_logo['und'][0]['alt'], 'title' => $node->field_p_logo['und'][0]['title'])) . '</div>';
+                    $h2_class = ' class="with-logo"';
                   }
                   else {
                     $logo = NULL;
                   }
-                  echo '<h2>' . bwh_misc_getTrackingUrl($logo . '<div class="title">' . $title . '</div>', NULL, $node->nid) . '</h2>';
+                  echo '<h2'. $h2_class . '>' . bwh_misc_getTrackingUrl('<span class="title">' . $title . '</span>' . $logo, NULL, $node->nid) . '</h2>';
                   //echo '<h2><a href="' . $node_url . '">' . bwh_misc_getTrackingUrl($logo . '<div class="title">' . $title . '</div>', NULL, $node->nid) . '</a></h2>';
                   
                   if (!$node->p_data['info']['i_web_hide'] && !empty($node->p_data['info']['i_web'])) {
