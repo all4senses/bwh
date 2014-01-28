@@ -2170,6 +2170,7 @@ function bwh_pages_form_alter(&$form, &$form_state, $form_id) {
               '#description' => 'Please, use a format "http://example.com" strictly!',
               '#default_value' => isset($p_data['info']['i_web']) ? $p_data['info']['i_web'] : '',
               '#element_validate' => array('bwh_misc_elementValidate_url'),
+              '#maxlength' => 400,
             );
             $form['data_info']['i_web_display'] = array(
               '#type' => 'textfield',
