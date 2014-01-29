@@ -4336,7 +4336,7 @@ function bwh_pages_getProviderRatingOverall($node) {
 //    $zebra = 0;
 //    $zebra_odd = array(1,3,5,7,9);
     foreach ($votes_sorted as $key => $vote) {
-      $zebra++;
+      //$zebra++;
       if ($vote['tag'] == 'overall') {
         $overall_vote = $vote;
         continue;
