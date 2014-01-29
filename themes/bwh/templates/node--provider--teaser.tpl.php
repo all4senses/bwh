@@ -27,7 +27,7 @@
                   echo '<h2', $h2_class, '>', bwh_misc_getTrackingUrl('<span class="title">' . $title . '</span>' . $logo, NULL, $node->nid), '</h2>';
                   //echo '<h2><a href="' . $node_url . '">' . bwh_misc_getTrackingUrl($logo . '<div class="title">' . $title . '</div>', NULL, $node->nid) . '</a></h2>';
                   
-                  echo render($content['body']), l('Read Full Review', 'node/' . $node->nid); 
+                  echo render($content['body']), l('(Read Full Review)', 'node/' . $node->nid); 
                   
                   
                   echo '<div class="table">';
