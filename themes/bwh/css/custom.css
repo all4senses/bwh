@@ -2193,7 +2193,11 @@ h2.with-logo .title {float: left; display: none;}
 
 .view-display-id-block_h_top_sh_teasers .views-row {margin-bottom: 25px;}
 .p-teaser {padding: 5px;}
+
 .p-teaser .content {border: 3px solid #289ec6; height: 190px;}
+.p-teaser.first .content {border: 6px solid red;}
+.p-teaser.first .listpos div {display: none;}
+
 .p-teaser .listpos {position: absolute; top: 10px; left: 5px; background: white; font-size: 70px; width: 100px; height: 100px;}
 .p-teaser .listpos div {border: 3px solid #289ec6; width: 80px; height: 80px; /*margin: auto;*/ text-align: center;}
 .p-teaser .listpos span {margin-top: 30px; display: block; color: #289ec6;}
