@@ -7,7 +7,7 @@
 ?>
 
 
-  <article id="node-<?php print $node->nid; ?>" class="p-teaser <?php print $classes; ?> clearfix"<?php print $attributes; ?>>
+  <article id="node-<?php print $node->nid; ?>" class="p-teaser <?php echo ($node->field_p_listposition_sh['und'][0]['value'] == 1 ? 'first ' : ''), $classes; ?> clearfix"<?php print $attributes; ?>>
     
         <div class="content"<?php print $content_attributes; ?>>
           
@@ -15,10 +15,10 @@
             
                 <?php
                 
-                  echo '<div class="listpos', ($node->field_p_listposition_sh['und'][0]['value'] == 1 ? ' first' : ''), '">', $node->field_p_listposition_sh['und'][0]['value'], '</div>';
+                  echo '<div class="listpos"><div><div>', $node->field_p_listposition_sh['und'][0]['value'], '</div></div></div>';
                   
                   if (isset($node->field_p_logo['und'][0]['uri'])) {
-                    $logo = '<div class="logo">' . theme('image_style', array( 'path' =>  $node->field_p_logo['und'][0]['uri'], 'style_name' => 'logo_provider_page', 'alt' => $node->field_p_logo['und'][0]['alt'], 'title' => $node->field_p_logo['und'][0]['title'])) . '</div>';
+                    $logo = '<div class="logo"><div>' . theme('image_style', array( 'path' =>  $node->field_p_logo['und'][0]['uri'], 'style_name' => 'logo_provider_page', 'alt' => $node->field_p_logo['und'][0]['alt'], 'title' => $node->field_p_logo['und'][0]['title'])) . '</div></div>';
                     $h2_class = ' class="with-logo"';
                   }
                   else {
