@@ -39,10 +39,10 @@
                   echo '</div>';
                   
                   echo '<div class="right">';
-                    echo '<div class="price"><div>', $node->p_data['s']['sh']['fees']['mon'], '</div>STARTING PRICE</div>';
+                    echo '<div class="price"><div>$', $node->p_data['s']['sh']['fees']['mon'], '</div>STARTING PRICE</div>';
                     //echo '<div class="overall">Overall Score: <span class="count" content="' . $node->bwh_rating_overall . '" property="v:rating">' . $node->bwh_rating_overall . '</span> out of 5</div>'; 
-                    echo '<div class="overall">', $node->bwh_rating_overall . '/5</div>'; 
-                    echo theme('bwh_misc_fivestar_static', array('rating' => $node->bwh_rating_overall*20, 'stars' => 5, 'tag' => 'overall', 'widget' => array('name' => 'stars', 'css' => 'stars.css')));
+                    echo '<div class="rating"><span class="overall">', $node->bwh_rating_overall, '/5</span>', theme('bwh_misc_fivestar_static', array('rating' => $node->bwh_rating_overall*20, 'stars' => 5, 'tag' => 'overall', 'widget' => array('name' => 'stars', 'css' => 'stars.css'))), '</div>';
+                    
                     if (!$node->p_data['info']['i_web_hide'] && !empty($node->p_data['info']['i_web'])) {
                       //echo '<div class="site">' , bwh_misc_getTrackingUrl('Visit ' . $node->field_p_name['und'][0]['value'], NULL, $node->nid), '</div>';
                       echo bwh_misc_getTrackingUrl('VISIT SITE', NULL, $node->nid, NULL, 'site');
