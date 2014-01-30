@@ -2196,10 +2196,14 @@ h2.with-logo .title {float: left; display: none;}
 
 .p-teaser .content {border: 3px solid #289ec6; height: 190px;}
 .p-teaser.first .content {border: 6px solid red;}
-.p-teaser.first .listpos div {display: none;}
 
 .p-teaser .listpos {position: absolute; top: 10px; left: 5px; background: white; font-size: 70px; width: 100px; height: 100px;}
+.p-teaser.first .listpos {width: 80px;}
+
 .p-teaser .listpos div {border: 3px solid #289ec6; width: 80px; height: 80px; /*margin: auto;*/ text-align: center;}
+.p-teaser.first .listpos div {border: none; background: url(/sites/all/themes/bwh/css/images/sprite-2.png) no-repeat 1px -1115px transparent; text-indent: -9999px; position: absolute; top: -10px; left: -7px; height: 130px;}
+
+
 .p-teaser .listpos span {margin-top: 30px; display: block; color: #289ec6;}
 .p-teaser .logo {position: absolute; top: 28px; left: 100px; width: 200px;}
 .p-teaser .logo div {text-align: center;}
