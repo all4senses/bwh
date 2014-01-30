@@ -511,7 +511,7 @@ div.fivestar-widget-static .star span.off {display: block; width: 100%; height: 
 
 .view-display-id-page_chart_providers {margin: 0 0 50px 0;}
 
-.view-providers {box-shadow: 1px 3px 10px -4px black;}
+/*.view-providers {box-shadow: 1px 3px 10px -4px black;}*/
 .page-compare-providers .view-providers {width: 960px; clear: both;}
 
 /*
@@ -2192,7 +2192,7 @@ body.sidebar-second .page-compare-providers #sidebar-second {padding: 0; margin-
 h2.with-logo .title {float: left; display: none;}
 
 .p-teaser {padding: 5px;}
-.p-teaser .content {border: 6px solid #289ec6; height: 200px;}
+.p-teaser .content {border: 3px solid #289ec6; height: 200px;}
 .p-teaser .listpos {position: absolute; top: 10px; left: 5px; background: white; font-size: 70px; width: 100px; height: 100px;}
 .p-teaser .listpos div {border: 3px solid #289ec6; width: 80px; height: 80px; /*margin: auto;*/ text-align: center;}
 .p-teaser .listpos span {margin-top: 25px; display: block;}
