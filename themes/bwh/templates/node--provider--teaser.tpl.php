@@ -34,7 +34,8 @@
                   echo '<div class="table">';
                     echo '<div class="mbg">REFUND POLICY<div>', $node->p_data['info']['i_mbg'], '</div></div>';
                     echo '<div class="space">STORAGE<div>', $node->p_data['s']['sh']['sp'], '</div></div>';
-                    echo '<div class="domain">DOMAIN NAME<div>', $node->p_data['provider_options']['Services & Performance']['Domains Allowed -text-'], '</div></div>';
+                    //echo '<div class="domain">DOMAIN NAME<div>', $node->p_data['provider_options']['Services & Performance']['Domains Allowed -text-'], '</div></div>';
+                    echo '<div class="domain">DOMAIN NAME<div>', $node->p_data['provider_options']['Services & Performance']['Domains Allowed'], '</div></div>';
                     echo '<div class="traffic">TRAFFIC<div>', $node->p_data['s']['sh']['bw'], '</div></div>';
                   echo '</div>';
                   

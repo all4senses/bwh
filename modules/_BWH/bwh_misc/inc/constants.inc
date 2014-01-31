@@ -55,6 +55,7 @@ $provider_options = array(
               'Maximum Speed' => 'textfield',
               'Maximum Storage' => 'textfield',
               'Domains Allowed' => 'checkbox',
+              'Domain Name' => 'textfield',
               'Control Panel' => 'checkbox',
               'SLA for Network Uptime' => 'textfield',
               'SLA for Infrastructure Uptime' => 'textfield',
