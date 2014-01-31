@@ -118,6 +118,12 @@ function bwh_blocks_block_info() {
     'info' => 'Writer admin links',
     'cache' => DRUPAL_NO_CACHE,
   );
+  
+  $blocks['home_flag_header'] = array(
+    'info' => 'Home Flag Header',
+    'cache' => DRUPAL_NO_CACHE,
+  );
+  
       
   return $blocks;
 }
@@ -211,6 +217,14 @@ function bwh_blocks_block_view($delta = '') {
       $block['content'] = bwh_blocks_getWriterAdminLinks();
       break;
     
+    
+    case 'home_flag_header':
+      $block['subject'] = '';
+      $block['content'] = bwh_blocks_getHomeFlagHeader();
+      break;
+    
+    
+    
     default:
       
       // Aquire blocks for all prefaces with defined bottoms.
@@ -262,6 +276,26 @@ function bwh_blocks_block_configure($delta = '') {
       
       break;
 
+    
+    
+    case 'home_flag_header':
+      $data = unserialize(variable_get('bwh_home_flag_header_block_data', NULL));
+    
+      $form['bwh_text_1'] = array(
+        '#type' => 'textfield', 
+        '#title' => 'Text 1',
+        '#default_value' => $data['text_1'], 
+      );
+      
+      $form['bwh_text_2'] = array(
+        '#type' => 'textfield', 
+        '#title' => 'Text 2',
+        '#default_value' => $data['text_2'], 
+      );
+      
+      break;
+    
+    
     
     case 'home_banner':
       $data = unserialize(variable_get('bwh_home_banner_block_data', NULL));
@@ -337,6 +371,12 @@ function bwh_blocks_block_save($delta = '', $edit = array()) {
       variable_set('bwh_disclosure_block_data', serialize($data));
       break;
     
+    
+    case 'home_flag_header':
+      $data = array('text_1' => $edit['text_1'], 'text_2' => $edit['text_2']);
+      variable_set('bwh_home_flag_header_block_data', serialize($data));
+      break;
+    
     case 'home_banner':
       $data = array('main_title' => $edit['bwh_main_title'], 'main_body' => $edit['bwh_main_body'], 'right_title' => $edit['bwh_right_title'], 'right_body' => $edit['bwh_right_body']);
       variable_set('bwh_home_banner_block_data', serialize($data));
@@ -348,6 +388,17 @@ function bwh_blocks_block_save($delta = '', $edit = array()) {
       break;
   }
   
+}
+
+
+/**
+ * Block with home flag header..
+ */
+function getHomeFlagHeader() {
+  
+  $data = unserialize(variable_get('bwh_home_flag_header_block_data', NULL));
+  
+  return '<div class="intro">' . $data['text_1'] . '<div>' . $data['text_2'] . '</div></div>';
 }
 
 
