@@ -33,11 +33,15 @@
                   //dpm($features);
 
                   if (!empty($features)) {
+                    $featires_count = 0;
                     foreach($features as $tid => $term) {
                       $out .= '<div class="feature">' . $term['name'] . '</div>';
+                      if (++$featires_count >3) {
+                        break;
+                      }
                     }
                   }
-                  echo '<div class="features">', $out, '</div>';
+                  echo '<div class="features">', $out, l('(Read Full Review)', 'node/' . $node->nid), '</div>';
 
                   //dpm($node->p_data['provider_options']);
                   echo '<div class="table">';
