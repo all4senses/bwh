@@ -30,12 +30,12 @@
                   //echo '<div class="about">', render($content['body']), l('(Read Full Review)', 'node/' . $node->nid), '</div>'; 
                   echo '<div class="about">', $content['body'][0]['#markup'], l('(Read Full Review)', 'node/' . $node->nid), '</div>'; 
                   
-                  dpm($node->p_data['provider_options']);
+                  //dpm($node->p_data['provider_options']);
                   echo '<div class="table">';
                     echo '<div class="mbg">REFUND POLICY<div>', $node->p_data['info']['i_mbg'], '</div></div>';
                     echo '<div class="space">STORAGE<div>', $node->p_data['s']['sh']['sp'], '</div></div>';
                     //echo '<div class="domain">DOMAIN NAME<div>', $node->p_data['provider_options']['Services & Performance']['Domains Allowed -text-'], '</div></div>';
-                    echo '<div class="domain">DOMAIN NAME<div>', $node->p_data['provider_options']['Services & Performance']['Domains Allowed'], '</div></div>';
+                    echo '<div class="domain">DOMAIN NAME<div>', $node->p_data['provider_options']['Services & Performance']['Domain Name'], '</div></div>';
                     echo '<div class="traffic">TRAFFIC<div>', $node->p_data['s']['sh']['bw'], '</div></div>';
                   echo '</div>';
                   
