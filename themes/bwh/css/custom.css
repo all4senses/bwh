@@ -2227,7 +2227,9 @@ h2.with-logo .title {float: left; display: none;}
 .p-teaser .rating {margin: 5px 0 16px; text-align: center; position: relative; padding: 10px 0;}
 .p-teaser .overall {font-size: 35px; position: absolute; right: 115px; color: #6f6f6f; font-weight: bold; top: 7px;}
 .p-teaser .fivestar {position: relative; left: 95px;}
-.p-teaser div.fivestar-widget-static .star {background: url(/sites/all/themes/bwh/css/images/sprite-2.png) no-repeat scroll -185px -285px transparent; width: 18px; height: 20px; margin-right: 3px;}
-.p-teaser div.fivestar-widget-static .star span.on,
-.p-teaser div.fivestar-widget-static .star span.off {background: url(/sites/all/themes/bwh/css/images/sprite-2.png) no-repeat scroll -164px -285px transparent; width: 18px; height: 20px; margin-right: 3px;}
+.p-teaser div.fivestar-widget-static .star,
+.p-teaser div.fivestar-widget-static .star span.off {background: url(/sites/all/themes/bwh/css/images/sprite-2.png) no-repeat scroll -185px -285px transparent; width: 18px; height: 20px; margin-right: 3px;}
+
+.p-teaser div.fivestar-widget-static .star span.on
+ {background: url(/sites/all/themes/bwh/css/images/sprite-2.png) no-repeat scroll -164px -285px transparent; width: 18px; height: 20px; margin-right: 3px;}
 .p-teaser .right .site {display: block; background: red; color: white; padding: 15px 20px; margin: 0; font-size: 33px; font-weight: bold; clear: both;}
