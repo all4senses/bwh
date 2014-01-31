@@ -394,7 +394,7 @@ function bwh_blocks_block_save($delta = '', $edit = array()) {
 /**
  * Block with home flag header..
  */
-function getHomeFlagHeader() {
+function bwh_blocks_getHomeFlagHeader() {
   
   $data = unserialize(variable_get('bwh_home_flag_header_block_data', NULL));
   
