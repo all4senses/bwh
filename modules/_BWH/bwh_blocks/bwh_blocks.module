@@ -281,13 +281,13 @@ function bwh_blocks_block_configure($delta = '') {
     case 'home_flag_header':
       $data = unserialize(variable_get('bwh_home_flag_header_block_data', NULL));
     
-      $form['bwh_text_1'] = array(
+      $form['text_1'] = array(
         '#type' => 'textfield', 
         '#title' => 'Text 1',
         '#default_value' => $data['text_1'], 
       );
       
-      $form['bwh_text_2'] = array(
+      $form['text_2'] = array(
         '#type' => 'textfield', 
         '#title' => 'Text 2',
         '#default_value' => $data['text_2'], 
