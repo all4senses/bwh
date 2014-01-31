@@ -25,11 +25,20 @@
                     $logo = NULL;
                   }
                   echo '<h2', $h2_class, '>', bwh_misc_getTrackingUrl('<span class="title">' . $title . '</span>' . $logo . '<div class="site">Visit ' . $node->field_p_name['und'][0]['value'] . '</div>', NULL, $node->nid), '</h2>';
-                  //echo '<h2><a href="' . $node_url . '">' . bwh_misc_getTrackingUrl($logo . '<div class="title">' . $title . '</div>', NULL, $node->nid) . '</a></h2>';
-                  //dpm($content);
-                  //echo '<div class="about">', render($content['body']), l('(Read Full Review)', 'node/' . $node->nid), '</div>'; 
-                  echo '<div class="about">', $content['body'][0]['#markup'], l('(Read Full Review)', 'node/' . $node->nid), '</div>'; 
                   
+                  //echo '<div class="about">', $content['body'][0]['#markup'], l('(Read Full Review)', 'node/' . $node->nid), '</div>'; 
+                  
+                  $out = '<div class="plan">' . $node->p_data['s']['sh']['pti'] . '</div>';
+                  $features = $node->p_data['s']['sh']['weights_sh_features'];
+                  //dpm($features);
+
+                  if (!empty($features)) {
+                    foreach($features as $tid => $term) {
+                      $out .= '<div class="feature">' . $term['name'] . '</div>';
+                    }
+                  }
+                  echo '<div class="features">', $out, '</div>';
+
                   //dpm($node->p_data['provider_options']);
                   echo '<div class="table">';
                     echo '<div class="mbg">MONEY BACK<div>', $node->p_data['info']['i_mbg'], '</div></div>';
