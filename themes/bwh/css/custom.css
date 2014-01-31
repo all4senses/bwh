@@ -2194,7 +2194,7 @@ h2.with-logo .title {float: left; display: none;}
 .view-display-id-block_h_top_sh_teasers .views-row {margin-bottom: 25px;}
 .p-teaser {padding: 5px;}
 
-.p-teaser .content {border: 3px solid #289ec6; height: 190px;}
+.p-teaser .content {border: 3px solid #289ec6; height: 198px;}
 .p-teaser.first .content {border: 6px solid red;}
 
 .p-teaser .listpos {position: absolute; top: 10px; left: 5px; background: white; font-size: 70px; width: 100px; height: 100px;}
@@ -2205,8 +2205,8 @@ h2.with-logo .title {float: left; display: none;}
 
 
 .p-teaser .listpos span {margin-top: 30px; display: block; color: #289ec6;}
-.p-teaser h2 {position: absolute; top: 28px; left: 100px; width: 200px; text-align: center;}
-.p-teaser h2 .site {font-weight: normal;}
+.p-teaser h2 {position: absolute; top: 23px; left: 110px; width: 200px; text-align: center;}
+.p-teaser h2 .site {font-weight: normal; font-size: 22px;}
 .p-teaser h2 a {color: #289ec6;}
 .p-teaser h2 a:hover {text-decoration: underline;}
 .p-teaser .logo div {text-align: center;}
@@ -2215,13 +2215,13 @@ h2.with-logo .title {float: left; display: none;}
 .p-teaser .about p {line-height: 16px;}
 .p-teaser .about span {font-size: 12px !important;}
 */
-.p-teaser .features {position: absolute; top: 25px; left: 325px;}
+.p-teaser .features {position: absolute; top: 25px; left: 350px;}
 .p-teaser .features  a {margin: 3px 0 0 20px; display: block;}
-.p-teaser .table {text-align: center; border: 3px solid #289ec6; position: absolute; width: 565px; height: 44px; top: 140px; left: 120px; font-size: 12px;}
+.p-teaser .table {text-align: center; border: 3px solid #289ec6; position: absolute; width: 565px; height: 44px; top: 145px; left: 120px; font-size: 12px;}
 .p-teaser .mbg, .p-teaser .sp, .p-teaser .domain {float: left; border-right: 3px solid #289ec6; width: 140px; height: 45px; padding-top: 2px;}
 .p-teaser .bw {padding-top: 2px;}
 .p-teaser .table div div {font-size: 20px; font-weight: bold; color: #289ec6; text-transform: uppercase;}
-.p-teaser .right {text-align: center; position: absolute; right: 0; right: 20px; top: 57px;}
+.p-teaser .right {text-align: center; position: absolute; right: 0; right: 20px; top: 62px;}
 .p-teaser .price {font-size: 25px; margin-bottom: 15px; font-weight: bold; color: #289ec6;}
 .p-teaser .price span {font-size: 60px;}
 .p-teaser .rating {margin: 5px 0 16px; text-align: center; position: relative; padding: 10px 0;}
