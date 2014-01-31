@@ -2210,9 +2210,13 @@ h2.with-logo .title {float: left; display: none;}
 .p-teaser h2 a {color: #289ec6;}
 .p-teaser h2 a:hover {text-decoration: underline;}
 .p-teaser .logo div {text-align: center;}
+/*
 .p-teaser .about {position: absolute; top: 30px; left: 305px; width: 400px;}
 .p-teaser .about p {line-height: 16px;}
 .p-teaser .about span {font-size: 12px !important;}
+*/
+.p-teaser .features {position: absolute; top: 25px; left: 300px;}
+
 .p-teaser .table {text-align: center; border: 3px solid #289ec6; position: absolute; width: 565px; height: 44px; top: 140px; left: 120px; font-size: 12px;}
 .p-teaser .mbg, .p-teaser .sp, .p-teaser .domain {float: left; border-right: 3px solid #289ec6; width: 140px; height: 45px; padding-top: 2px;}
 .p-teaser .bw {padding-top: 2px;}
