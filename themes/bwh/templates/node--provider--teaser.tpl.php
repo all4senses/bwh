@@ -18,7 +18,7 @@
                   echo '<div class="listpos"><div><span>', $node->field_p_listposition_sh['und'][0]['value'], '</span></div></div>';
                   
                   if (isset($node->field_p_logo['und'][0]['uri'])) {
-                    $logo = '<div class="logo"><div>' . theme('image_style', array( 'path' =>  $node->field_p_logo['und'][0]['uri'], 'style_name' => 'logo_provider_page', 'alt' => $node->field_p_logo['und'][0]['alt'], 'title' => $node->field_p_logo['und'][0]['title'])) . '</div></div>';
+                    $logo = '<div class="logo"><div>' . theme('image_style', array( 'path' =>  $node->field_p_logo['und'][0]['uri'], 'style_name' => 'logo_provider_teaser', 'alt' => $node->field_p_logo['und'][0]['alt'], 'title' => $node->field_p_logo['und'][0]['title'])) . '</div></div>';
                     $h2_class = ' class="with-logo"';
                   }
                   else {
