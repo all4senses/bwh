@@ -9,7 +9,7 @@
 
     </div>
       
-    <div class="intro">COMPARE OUR TOP WEB HOSTING PICKS<div>UPDATED JANUARY 2014</div></div>  
+    <!--<div class="intro">COMPARE OUR TOP WEB HOSTING PICKS<div>UPDATED JANUARY 2014</div></div>  -->
       
     <nav id="navigation" role="navigation" class="clearfix">
       <!--<div id="header-menu-back"></div>-->
