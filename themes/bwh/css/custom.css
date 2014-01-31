@@ -2228,7 +2228,7 @@ h2.with-logo .title {float: left; display: none;}
 .p-teaser .overall {font-size: 35px; position: absolute; right: 115px; color: #6f6f6f; font-weight: bold; top: 7px;}
 .p-teaser .fivestar {position: relative; left: 95px;}
 .p-teaser div.fivestar-widget-static .star,
-.p-teaser div.fivestar-widget-static .star span.off {background: url(/sites/all/themes/bwh/css/images/sprite-2.png) no-repeat scroll -185px -285px transparent; width: 18px; height: 20px; margin-right: 3px;}
+.p-teaser div.fivestar-widget-static .star span.off {background: url(/sites/all/themes/bwh/css/images/sprite-2.png) no-repeat scroll -185px -266px transparent; width: 18px; height: 20px; margin-right: 3px;}
 
 .p-teaser div.fivestar-widget-static .star span.on
  {background: url(/sites/all/themes/bwh/css/images/sprite-2.png) no-repeat scroll -164px -285px transparent; width: 18px; height: 20px; margin-right: 3px;}
