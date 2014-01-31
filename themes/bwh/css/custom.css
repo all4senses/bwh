@@ -2207,6 +2207,7 @@ h2.with-logo .title {float: left; display: none;}
 .p-teaser .listpos span {margin-top: 30px; display: block; color: #289ec6;}
 .p-teaser h2 {position: absolute; top: 28px; left: 100px; width: 200px; text-align: center;}
 .p-teaser h2 .site {font-weight: normal;}
+.p-teaser h2 a {color: #289ec6;}
 .p-teaser .logo div {text-align: center;}
 .p-teaser .about {position: absolute; top: 30px; left: 305px; width: 400px;}
 .p-teaser .about p {line-height: 16px;}
