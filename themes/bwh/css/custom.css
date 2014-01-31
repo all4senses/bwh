@@ -179,9 +179,9 @@ ul.header-links a.Submit.Reviews{background: url("images/block-head-red.png") re
 
 /*#footer {color: lightgray; padding: 5px 0; background: black; height: 210px;}*/
 /*#footer {color: gray; padding: 5px 0; text-align: center; font-size: 14px;}*/
-#footer {color: gray; padding: 5px 0; text-align: center; font-size: 14px; background: #353535; height: 270px;}
+#footer {color: gray; padding: 5px 0; text-align: center; font-size: 14px; background: #353535; height: 230px;}
 
-#logo-footer {background: url(/sites/all/themes/bwh/css/images/bwh-logo-footer.png) no-repeat 0 0; width: 325px; height: 25px; margin: 45px auto 40px;}
+#logo-footer {background: url(/sites/all/themes/bwh/css/images/bwh-logo-footer.png) no-repeat 0 0; width: 325px; height: 25px; margin: 25px auto 20px;}
 
 #footer .region-footer{width: 560px; margin: auto;}
 
@@ -2191,7 +2191,7 @@ body.sidebar-second .page-compare-providers #sidebar-second {padding: 0; margin-
 /* Providers listing pages */
 h2.with-logo .title {float: left; display: none;}
 
-.view-display-id-block_h_top_sh_teasers .views-row {margin-bottom: 25px;}
+.view-display-id-block_h_top_sh_teasers .views-row {margin-bottom: 10px;}
 .p-teaser {padding: 5px;}
 
 .p-teaser .content {border: 3px solid #289ec6; height: 198px;}
@@ -2228,8 +2228,11 @@ h2.with-logo .title {float: left; display: none;}
 .p-teaser .overall {font-size: 35px; position: absolute; right: 115px; color: #6f6f6f; font-weight: bold; top: 7px;}
 .p-teaser .fivestar {position: relative; left: 95px;}
 .p-teaser div.fivestar-widget-static .star,
-.p-teaser div.fivestar-widget-static .star span.off {background: url(/sites/all/themes/bwh/css/images/sprite-2.png) no-repeat scroll -185px -266px transparent; width: 18px; height: 20px; margin-right: 3px;}
+.p-teaser div.fivestar-widget-static .star span.off {background: url(/sites/all/themes/bwh/css/images/sprite-2.png) no-repeat scroll -185px -285px transparent; width: 18px; height: 20px; margin-right: 3px;}
+/*.p-teaser div.fivestar-widget-static .star span.off {background: url(/sites/all/themes/bwh/css/images/sprite-2.png) no-repeat scroll -185px -266px transparent; width: 18px; height: 20px; margin-right: 3px;}*/
+
 
 .p-teaser div.fivestar-widget-static .star span.on
  {background: url(/sites/all/themes/bwh/css/images/sprite-2.png) no-repeat scroll -164px -285px transparent; width: 18px; height: 20px; margin-right: 3px;}
 .p-teaser .right .site {display: block; background: red; color: white; padding: 15px 20px; margin: 0; font-size: 33px; font-weight: bold; clear: both;}
+.p-teaser .right .site:hover {text-shadow: 1px 1px 2px black;}
