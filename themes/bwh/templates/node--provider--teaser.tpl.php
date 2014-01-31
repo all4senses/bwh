@@ -36,7 +36,7 @@
                     $featires_count = 0;
                     foreach($features as $tid => $term) {
                       $out .= '<div class="feature">' . $term['name'] . '</div>';
-                      if (++$featires_count >3) {
+                      if (++$featires_count >2) {
                         break;
                       }
                     }
