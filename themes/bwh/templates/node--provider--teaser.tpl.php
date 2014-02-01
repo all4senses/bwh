@@ -24,7 +24,7 @@
                   else {
                     $logo = NULL;
                   }
-                  echo '<h2', $h2_class, '>', bwh_misc_getTrackingUrl('<span class="title">' . $title . '</span>' . $logo . '<div class="site">Visit ' . $node->field_p_name['und'][0]['value'] . '</div>', NULL, $node->nid), '</h2>';
+                  echo '<h2', $h2_class, '>', bwh_misc_getTrackingUrl('<span class="title">' . $title . '</span>' . $logo, NULL, $node->nid), bwh_misc_getTrackingUrl('<div class="site">Visit ' . $node->field_p_name['und'][0]['value'] . '</div>', NULL, $node->nid), '</h2>';
                   
                   //echo '<div class="about">', $content['body'][0]['#markup'], l('(Read Full Review)', 'node/' . $node->nid), '</div>'; 
                   
