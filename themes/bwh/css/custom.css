@@ -2217,8 +2217,8 @@ h2.with-logo .title {float: left; display: none;}
 .p-teaser .about span {font-size: 12px !important;}
 */
 .p-teaser .features {position: absolute; top: 20px; left: 350px;}
-.p-teaser .view-providers .plan {font-size: 15px;}
-.p-teaser .view-providers .feature {font-size: 14px; line-height: 23px;}
+.view-providers .p-teaser .plan {font-size: 15px;}
+.view-providers .p-teaser .feature {font-size: 14px; line-height: 23px;}
 .p-teaser .features  a {margin: 3px 0 0 20px; display: block; font-size: 14px;}
 .p-teaser .table {text-align: center; border: 3px solid #289ec6; position: absolute; width: 565px; height: 44px; top: 145px; left: 120px; font-size: 12px;}
 .p-teaser .mbg, .p-teaser .sp, .p-teaser .domain {float: left; border-right: 3px solid #289ec6; width: 140px; height: 45px; padding-top: 2px;}
