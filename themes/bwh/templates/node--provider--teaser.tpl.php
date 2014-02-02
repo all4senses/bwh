@@ -41,7 +41,7 @@
                       }
                     }
                   }
-                  echo '<div class="features">', $out, l('Read Full Review', 'node/' . $node->nid), '</div>';
+                  echo '<div class="features">', $out, l('Read Reviews', 'node/' . $node->nid), '</div>';
 
                   //dpm($node->p_data['provider_options']);
                   echo '<div class="table">';
