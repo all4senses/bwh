@@ -2202,7 +2202,7 @@ h2.with-logo .title {float: left; display: none;}
 .p-teaser.first .listpos {width: 80px;}
 
 .p-teaser .listpos div {border: 3px solid #289ec6; width: 80px; height: 80px; /*margin: auto;*/ text-align: center;}
-.p-teaser.first .listpos div {border: none; background: url(/sites/all/themes/bwh/css/images/sprite-2.png) no-repeat 1px -1115px transparent; text-indent: -9999px; position: absolute; top: -10px; left: -7px; height: 130px;}
+.p-teaser.first .listpos div {border: none; background: url(images/sprite-2.png) no-repeat 1px -1115px transparent; text-indent: -9999px; position: absolute; top: -10px; left: -7px; height: 130px;}
 
 
 .p-teaser .listpos span {margin-top: 30px; display: block; color: #289ec6;}
@@ -2216,8 +2216,8 @@ h2.with-logo .title {float: left; display: none;}
 .p-teaser .about p {line-height: 16px;}
 .p-teaser .about span {font-size: 12px !important;}
 */
-.p-teaser .features {position: absolute; top: 20px; left: 350px;}
-.view-providers .p-teaser .plan {font-size: 15px;}
+.p-teaser .features {position: absolute; top: 23px; left: 350px;}
+.view-providers .p-teaser .plan {font-size: 16px; color: #289ec6;}
 .view-providers .p-teaser .feature {font-size: 14px; line-height: 23px;}
 .p-teaser .features  a {margin: 3px 0 0 20px; display: block; font-size: 14px;}
 .p-teaser .table {text-align: center; border: 3px solid #289ec6; position: absolute; width: 565px; height: 44px; top: 145px; left: 120px; font-size: 12px;}
@@ -2231,7 +2231,7 @@ h2.with-logo .title {float: left; display: none;}
 .p-teaser .overall {font-size: 35px; position: absolute; right: 115px; color: #6f6f6f; font-weight: bold; top: 7px;}
 .p-teaser .fivestar {position: relative; left: 95px;}
 .p-teaser div.fivestar-widget-static .star,
-.p-teaser div.fivestar-widget-static .star span.off {background: url(/sites/all/themes/bwh/css/images/sprite-2.png) no-repeat scroll -185px -285px transparent; width: 18px; height: 20px; margin-right: 3px;}
+.p-teaser div.fivestar-widget-static .star span.off {background: url(images/sprite-2.png) no-repeat scroll -185px -285px transparent; width: 18px; height: 20px; margin-right: 3px;}
 /*.p-teaser div.fivestar-widget-static .star span.off {background: url(/sites/all/themes/bwh/css/images/sprite-2.png) no-repeat scroll -185px -266px transparent; width: 18px; height: 20px; margin-right: 3px;}*/
 
 
