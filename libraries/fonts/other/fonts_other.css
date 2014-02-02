@@ -1,0 +1,28 @@
+
+/* Chrome, FF, Opera.... + IE */
+@font-face {
+  font-family: 'MyriadPro BoldCond';
+  font-style: normal;
+  font-weight: normal;
+  /* same + IE */
+  src: url(/sites/all/libraries/fonts/other/myriadpro-boldcond.eot);
+  src: local('MyriadPro BoldCond'), local('MyriadPro BoldCond'), url(/sites/all/libraries/fonts/other/myriadpro-boldcond.eot) format('embedded-opentype'), url(/sites/all/libraries/fonts/other/myriadpro-boldcond.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'RobotoSlab Light';
+  font-style: normal;
+  font-weight: normal;
+  /* same + IE */
+  src: url(/sites/all/libraries/fonts/other/robotoslab-light.eot);
+  src: local('RobotoSlab Light'), local('RobotoSlab Light'), url(/sites/all/libraries/fonts/other/robotoslab-light.eot) format('embedded-opentype'), url(/sites/all/libraries/fonts/other/robotoslab-light.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'LeagueGothic Regular';
+  font-style: normal;
+  font-weight: normal;
+  /* same + IE */
+  src: url(/sites/all/libraries/fonts/other/leaguegothic-regular.eot);
+  src: local('RobotoSlab Light'), local('RobotoSlab Light'), url(/sites/all/libraries/fonts/other/leaguegothic-regular.eot) format('embedded-opentype'), url(/sites/all/libraries/fonts/other/leaguegothic-regular.woff) format('woff');
+}
