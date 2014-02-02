@@ -2208,7 +2208,7 @@ h2.with-logo .title {float: left; display: none;}
 .p-teaser .listpos span {margin-top: 30px; display: block; color: #289ec6;}
 .p-teaser h2 {position: absolute; top: 23px; left: 110px; width: 200px; text-align: center;}
 .p-teaser h2 .site {font-weight: normal; font-size: 22px;}
-.p-teaser h2 a {color: #289ec6;}
+.p-teaser h2 a {color: #478AFD;}
 .p-teaser h2 a:hover {text-decoration: underline;}
 .p-teaser .logo div {text-align: center;}
 /*
@@ -2219,7 +2219,7 @@ h2.with-logo .title {float: left; display: none;}
 .p-teaser .features {position: absolute; top: 23px; left: 350px;}
 .view-providers .p-teaser .plan {font-size: 16px; color: #289ec6;}
 .view-providers .p-teaser .feature {font-size: 14px; line-height: 23px;}
-.p-teaser .features a {margin: 3px 0 0 20px; display: block; font-size: 14px; color: #289ec6;}
+.p-teaser .features a {margin: 3px 0 0 20px; display: inline-block; font-size: 14px;}
 .p-teaser .features a:hover {text-decoration: underline;}
 .p-teaser .table {text-align: center; border: 3px solid #289ec6; position: absolute; width: 565px; height: 44px; top: 145px; left: 120px; font-size: 12px;}
 .p-teaser .mbg, .p-teaser .sp, .p-teaser .domain {float: left; border-right: 3px solid #289ec6; width: 140px; height: 45px; padding-top: 2px;}
@@ -2238,5 +2238,5 @@ h2.with-logo .title {float: left; display: none;}
 
 .p-teaser div.fivestar-widget-static .star span.on
  {background: url(/sites/all/themes/bwh/css/images/sprite-2.png) no-repeat scroll -164px -285px transparent; width: 18px; height: 20px; margin-right: 3px;}
-.p-teaser .right .site {display: block; background: red; color: white; padding: 15px 20px; margin: 0; font-size: 33px; font-weight: bold; clear: both;}
+.p-teaser .right .site {font-family: arial; display: block; background: red; color: white; padding: 15px 20px; margin: 0; font-size: 33px; font-weight: bold; clear: both;}
 .p-teaser .right .site:hover {text-shadow: 1px 1px 2px black;}
