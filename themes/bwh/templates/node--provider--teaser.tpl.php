@@ -59,7 +59,7 @@
                     
                     if (!$node->p_data['info']['i_web_hide'] && !empty($node->p_data['info']['i_web'])) {
                       //echo '<div class="site">' , bwh_misc_getTrackingUrl('Visit ' . $node->field_p_name['und'][0]['value'], NULL, $node->nid), '</div>';
-                      echo bwh_misc_getTrackingUrl('VISIT SITE', NULL, $node->nid, NULL, 'site');
+                      echo bwh_misc_getTrackingUrl('Let\'s go!', NULL, $node->nid, NULL, 'site');
                     }
                   echo '</div>';
                   
