@@ -1331,12 +1331,12 @@ margin-top: 100px;
 /* New provider template for page and node*/
 .node-type-provider .breadcrumb {padding: 2px 0 2px 20px; font-size: 12px;}
 
-.node-type-provider #all-content {background: #f2f2f2;}
+.node-type-provider #all-content {/*background: #f2f2f2;*/}
 
 .node-type-provider #main .main-content {position: relative; padding: 40px 0 0 0;}
 .node-type-provider #main .main-content .content {border: none; margin-top: 0; padding: 20px 20px 10px 20px; background: white; overflow: hidden;}
 
-.node-type-provider #top-line {position: absolute; top: 3px; left: 0; width: 100%; background: #f2f2f2; height: 38px; border-bottom: 2px solid #61b4eb;}
+.node-type-provider #top-line {position: absolute; top: 3px; left: 0; width: 100%; /*background: #f2f2f2;*/ height: 38px; border-bottom: 2px solid #61b4eb;}
 
 .node-type-provider #top-line ul, 
 .node-type-provider ul.ui-widget-header {border: none; background: none; float: left; position: absolute; top: 0px; left: 410px; 
@@ -1347,7 +1347,7 @@ margin: 0; padding: .2em .2em 0;}
 
 .node-type-provider #top-line li {display: none; /*float: left; background: #f1f1f1; border: 2px solid #61b4eb; font-size: 14px; border-radius: 0; height: 32px; margin-left: 5px;
 list-style: none; position: relative; top: 1px; margin: 0 .2em 1px 0; border-bottom: 0 !important; padding: 0; white-space: nowrap; font-weight: normal;*/}
-.node-type-provider #top-line li.ui-state-default {display: block; background: #f1f1f1; border: 2px solid #61b4eb; font-size: 14px; border-radius: 0; height: 31px; margin-left: 5px !important;}
+.node-type-provider #top-line li.ui-state-default {display: block; background: /*#f1f1f1*/white; border: 2px solid #61b4eb; font-size: 14px; border-radius: 0; height: 31px; margin-left: 5px !important;}
 
 .node-type-provider #top-line li.ui-state-default.ui-tabs-selected {background: white; border: 2px solid #61b4eb; height: 32px;}
 .node-type-provider #top-line li.ui-state-default.ui-tabs-selected a {background: white; padding: .5em 9px .8em;}
