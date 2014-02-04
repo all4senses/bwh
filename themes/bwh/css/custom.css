@@ -1396,7 +1396,7 @@ list-style: none; position: relative; top: 1px; margin: 0 .2em 1px 0; border-bot
 
 
 /*.node-type-provider #left-col .bwh_votes .caption {padding: 20px 5px 2px 10px; color: gray; background: url(/sites/all/themes/bwh/css/images/sprite-2.png) repeat-x 0 -703px; font-weight: normal; margin: 0; font-size: 22px; font-family: FaktConPro-SemiBold; border-radius: 0;}*/
-.node-type-provider #left-col .bwh_votes .caption {font-weight: normal; margin: 0 font-size: 22px; font-family: FaktConPro-SemiBold; border-radius: 0; background: #23b7e8; padding: 0px 5px 0px 10px; color: white; text-align: center;}
+.node-type-provider #left-col .bwh_votes .caption {font-weight: normal; margin: 0; font-size: 22px; font-family: FaktConPro-SemiBold; border-radius: 0; background: #23b7e8; padding: 0px 5px 0px 10px; color: white; text-align: center;}
 .node-type-provider #left-col .bwh_votes .caption span {/*float: left; margin-right: 5px;*/}
 
 
