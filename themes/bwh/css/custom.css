@@ -2251,6 +2251,7 @@ h2.with-logo .title {float: left; display: none;}
 .p-teaser .price span {font-size: 60px;}
 .p-teaser .rating {margin: 5px 0 16px; text-align: center; position: relative; padding: 10px 0;}
 .p-teaser .overall {font-size: 35px; position: absolute; right: 115px; color: #6f6f6f; font-weight: bold; top: 7px;}
+.p-teaser .overall span {font-size: 27px;}
 .p-teaser .fivestar {position: relative; left: 95px;}
 .p-teaser div.fivestar-widget-static .star,
 .p-teaser div.fivestar-widget-static .star span.off {background: url(images/sprite-2.png) no-repeat scroll -185px -285px transparent; width: 18px; height: 20px; margin-right: 3px;}
