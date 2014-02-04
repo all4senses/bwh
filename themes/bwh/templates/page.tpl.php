@@ -19,8 +19,9 @@
 //        if ($user->uid == 1) {
           echo /*'<a id="itexpo" href="http://bestwebhosting.ca/blog/tags/itexpo-2012"></a>',*/ render($page['header']); 
           
-          echo bwh_blocks_getBlockThemed(array('module' => 'om_maximenu', 'delta' => 'om-maximenu-1', 'no_subject' => TRUE, 'class' => 'block-om-maximenu', 'shadow' => FALSE), TRUE, '+31 day', ($user->uid ? '_logged' : NULL));
-          
+          if ($user->uid == 1) {
+            echo bwh_blocks_getBlockThemed(array('module' => 'om_maximenu', 'delta' => 'om-maximenu-1', 'no_subject' => TRUE, 'class' => 'block-om-maximenu', 'shadow' => FALSE), TRUE, '+31 day', ($user->uid ? '_logged' : NULL));
+          }
 //        }
 //        else {
 //          echo '<div id="block-bwh-blocks-header-links"><div class="follow-us">Follow Us</div>', bwh_blocks_get_headerLinks(), '</div>', render($page['header']); 
