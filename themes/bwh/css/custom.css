@@ -1374,7 +1374,9 @@ list-style: none; position: relative; top: 1px; margin: 0 .2em 1px 0; border-bot
 .node-type-provider #main .node-teaser header {border-bottom: none; padding-bottom: 0; margin-bottom: 0;}
 .node-type-provider.page-node #main .node-review .main-content .content {background: none; padding: 5px;}
 .node-type-provider .bwh_votes {float: left; width: 260px; margin: 0; padding: 0; border: /*1px solid lightgray*/2px solid #23b7e8; border-radius: 0; color: gray; font-weight: normal;}
-.node-type-provider .bwh_votes .caption {background: #59ade6; color: white; font-weight: normal; padding: 4px 0 6px 10px; border-radius: 0; margin-bottom: 5px;}
+/*.node-type-provider .bwh_votes .caption {background: #59ade6; color: white; font-weight: normal; padding: 4px 0 6px 10px; border-radius: 0; margin-bottom: 5px;}*/
+.node-type-provider .bwh_votes .caption {background: #23b7e8; color: white; border-radius: 0; margin-bottom: 5px; text-align: center; padding: 2px 0; font-size: 18px;}
+
 .node-type-provider .bwh_votes .bwh_vote {clear: both; height: 20px; background: none; border-radius: 0; margin-top: 0; padding: 0px 0 5px; font-size: 14px;}
 .node-type-provider .bwh_votes .bwh_vote.even {background: #f1f1f1;}
 .node-type-provider .bwh_vote .fivestar {float: right; margin-right: 10px; padding: 4px 0 5px;}
