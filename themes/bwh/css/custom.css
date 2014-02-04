@@ -1278,7 +1278,7 @@ margin-top: 100px;
 
 .bwh_votes{float: left; width: 280px; margin: 0 10px 0 30px; padding: 10px 8px 6px; border: 1px solid lightgray; border-radius: 5px;}
 .bwh_votes .caption{background: url(images/chart-th-back.jpg) repeat-x 0 bottom transparent; color: white; font-weight: bold; padding: 7px 0 6px 10px; border-radius: 5px; margin-bottom: 5px; }
-.bwh_votes .caption span{float: left; margin-right: 10px;}
+.bwh_votes .caption span{/*float: left; margin-right: 10px;*/}
 .bwh_votes .data{padding: 0 0 0px 0;}
 .bwh_vote{clear: both; height: 25px; background: #c8ebff; border-radius: 5px; margin-top: 5px; padding: 3px 0;}
 .bwh_vote .title{padding: 3px 0 3px 10px; float: left;}
@@ -1373,7 +1373,7 @@ list-style: none; position: relative; top: 1px; margin: 0 .2em 1px 0; border-bot
 .node-type-provider #main h3.rcaption {background: none; color: #333333; font-weight: 600; padding: 5px 0 0 5px;}
 .node-type-provider #main .node-teaser header {border-bottom: none; padding-bottom: 0; margin-bottom: 0;}
 .node-type-provider.page-node #main .node-review .main-content .content {background: none; padding: 5px;}
-.node-type-provider .bwh_votes {float: left; width: 260px; margin: 0; padding: 0; border: 1px solid lightgray; border-radius: 0; color: gray; font-weight: normal;}
+.node-type-provider .bwh_votes {float: left; width: 260px; margin: 0; padding: 0; border: /*1px solid lightgray*/2px solid #23b7e8; border-radius: 0; color: gray; font-weight: normal;}
 .node-type-provider .bwh_votes .caption {background: #59ade6; color: white; font-weight: normal; padding: 4px 0 6px 10px; border-radius: 0; margin-bottom: 5px;}
 .node-type-provider .bwh_votes .bwh_vote {clear: both; height: 20px; background: none; border-radius: 0; margin-top: 0; padding: 0px 0 5px; font-size: 14px;}
 .node-type-provider .bwh_votes .bwh_vote.even {background: #f1f1f1;}
@@ -1395,8 +1395,11 @@ list-style: none; position: relative; top: 1px; margin: 0 .2em 1px 0; border-bot
 .node-type-provider .site a {background: url(/sites/all/themes/bwh/css/images/sprite-2.png) repeat-x 0 -763px #2ab967; text-indent: 0; display: block; height: 25px; width: 260px; margin: 15px auto 20px; padding: 7px 0 8px 0; color: white; border-radius: 5px; font-size: 18px;}
 
 
-.node-type-provider #left-col .bwh_votes .caption {padding: 20px 5px 2px 10px; color: gray; background: url(/sites/all/themes/bwh/css/images/sprite-2.png) repeat-x 0 -703px; font-weight: normal; margin: 0; font-size: 22px; font-family: FaktConPro-SemiBold; border-radius: 0;}
-.node-type-provider #left-col .bwh_votes .caption span {float: left; margin-right: 5px;}
+/*.node-type-provider #left-col .bwh_votes .caption {padding: 20px 5px 2px 10px; color: gray; background: url(/sites/all/themes/bwh/css/images/sprite-2.png) repeat-x 0 -703px; font-weight: normal; margin: 0; font-size: 22px; font-family: FaktConPro-SemiBold; border-radius: 0;}*/
+.node-type-provider #left-col .bwh_votes .caption {font-weight: normal; margin: 0 font-size: 22px; font-family: FaktConPro-SemiBold; border-radius: 0; background: #23b7e8; padding: 0px 5px 0px 10px; color: white; text-align: center;}
+.node-type-provider #left-col .bwh_votes .caption span {/*float: left; margin-right: 5px;*/}
+
+
 .node-type-provider #left-col .bwh_votes .bwh_vote {margin-top: 4px;}
 .node-type-provider #left-col .bwh_votes .bwh_vote.even {background: none;}
 .node-type-provider #left-col .bwh_votes .data {padding: 0;}
@@ -1404,7 +1407,8 @@ list-style: none; position: relative; top: 1px; margin: 0 .2em 1px 0; border-bot
 .node-type-provider #left-col .bwh_votes .voters .title {float: left; margin: 0 5px 0 0; font-weight: normal;}
 .node-type-provider #left-col .bwh_votes .recommend {margin: 0 0 15px 10px; font-size: 12px;}
 .node-type-provider #left-col .bwh_votes .recommend .title {float: left; margin: 0 5px 0 0; font-weight: normal;}
-.node-type-provider #left-col .overall {margin: 15px auto 5px 10px; font-size: 15px; font-weight: bold; border-top: 1px solid lightgray; padding: 10px 0px 5px 0; width: 240px; text-align: center;}
+/*.node-type-provider #left-col .overall {margin: 15px auto 5px 10px; font-size: 15px; font-weight: bold; border-top: 1px solid lightgray; padding: 10px 0px 5px 0; width: 240px; text-align: center;}*/
+.node-type-provider #left-col .overall {font-size: 15px; font-weight: bold; border-top: 1px solid lightgray; text-align: center; background: #23b7e8; color: white; margin: 10px 0 0 0; width: inherit; padding: 2px 0;}
 .node-type-provider .be-first {margin: 10px 0 15px 10px; display: block; width: 140px; font-size: 15px;}
 
 /* provider ratings block */
