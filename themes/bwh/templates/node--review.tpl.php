@@ -93,7 +93,7 @@
                 <div class="text"><?php echo '<div class="title">' , t('Date:') , '</div><div property="v:dtreviewed" content="' . date('Y-m-d', $node->created) . '">' , date('F j, Y', $node->created) , '</div>'; ?></div>
                 <div class="text"><?php echo '<div class="title">' , t('Reviewer:') , '</div><div property="v:reviewer">' , $node->field_r_fname['und'][0]['safe_value'] , '</div>'; ?></div>
               <?php endif; ?>
-              <div class="text"><?php echo '<div class="title">' . t('Recommend') . ': </div><div class="data">' . $node->bwh_recommend . '</div>'?></div>
+              <div class="text recommend"><?php echo '<span class="title">Recommend: </span><span class="data">' . $node->bwh_recommend . '</span>'?></div>
             </div>
           </div>
           
