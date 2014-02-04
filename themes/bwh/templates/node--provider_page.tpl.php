@@ -97,9 +97,9 @@
 
                       <?php 
 
-                      if ($user->uid && !empty($node->p_data['provider_options']) && (!isset($node->p_data['provider_options']['enabled']) || !empty($node->p_data['provider_options']['enabled']))) {
-                        echo '<li><a href="#tabs-2">Available Options</a></li>';
-                      }
+//                      if ($user->uid && !empty($node->p_data['provider_options']) && (!isset($node->p_data['provider_options']['enabled']) || !empty($node->p_data['provider_options']['enabled']))) {
+//                        echo '<li><a href="#tabs-2">Available Options</a></li>';
+//                      }
 
 //                      if (!$node->p_data['info']['i_web_hide'] && !empty($node->p_data['info']['i_web'])) {
 //                        echo '<li>', bwh_misc_getTrackingUrl('Visit Website', NULL, NULL, NULL, 'visit-site'), '</li>';
@@ -146,8 +146,8 @@
                 
                 
                 <?php 
-                  if ($user->uid && !empty($node->p_data['provider_options']) && (!isset($node->p_data['provider_options']['enabled']) || !empty($node->p_data['provider_options']['enabled']))) {
-                    
+//                  if ($user->uid && !empty($node->p_data['provider_options']) && (!isset($node->p_data['provider_options']['enabled']) || !empty($node->p_data['provider_options']['enabled']))) {
+                  if (0) {  
                   
                     echo '<div id="tabs-2">';
 
