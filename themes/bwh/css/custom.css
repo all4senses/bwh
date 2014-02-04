@@ -1,6 +1,7 @@
 #listpositionsbody{-webkit-text-size-adjust: none; min-width: 1150px; position: relative;}
 
-body {/*background: #e9e9e9; */min-width: 1000px;}
+body {background: url(/sites/all/themes/bwh/css/images/header-back2.png) repeat-x right 0px white; min-width: 1000px;}
+body.front {background: white;}
 
 body.one-sidebar.sidebar-second #sidebar-second{padding: 0 20px 0 5px; width: 250px; margin: 0;}
 body.front.one-sidebar.sidebar-second #sidebar-second{padding-top: 3px}
@@ -36,7 +37,8 @@ a, a:focus{ -webkit-appearance: none; outline: none;}
 /*#c-top{background: url(images/top-back3.jpg) repeat-x scroll 0 bottom #484848; height: 112px;}*/
 /*#c-top{height: 125px; background: white; width: 1000px; margin: auto; box-shadow: 0px 10px 60px #DDDDDD,0 0px 7px gray;}*/
 
-#c-top {height: 160px; background: url("images/header-back2.png") repeat-x right top white;}
+/*#c-top {height: 160px; background: url("images/header-back2.png") repeat-x right top white;}*/
+#c-top {height: 110px;}
 .front #c-top {height: /*290*/215px; background: url("images/header-back.png") repeat-x right -30px white;}
 
 .header{margin: auto; position: relative; width: 1000px;}
