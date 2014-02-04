@@ -1394,8 +1394,8 @@ list-style: none; position: relative; top: 1px; margin: 0 .2em 1px 0; border-bot
 .node-type-provider .image img {width: 260px; border: 1px solid lightgray;}
 /*.node-type-provider .basic-info {float: none; margin: 0; width: inherit; font-size: 15px;}*/
 
-.node-type-provider .site a {background: url(/sites/all/themes/bwh/css/images/sprite-2.png) repeat-x 0 -763px #2ab967; text-indent: 0; display: block; height: 25px; width: 260px; margin: 15px auto 20px; padding: 7px 0 8px 0; color: white; border-radius: 5px; font-size: 18px;}
-
+/*.node-type-provider .site a {background: url(/sites/all/themes/bwh/css/images/sprite-2.png) repeat-x 0 -763px #2ab967; text-indent: 0; display: block; height: 25px; width: 260px; margin: 15px auto 20px; padding: 7px 0 8px 0; color: white; border-radius: 5px; font-size: 18px;}*/
+.node-type-provider .site a {text-indent: 0; display: block; height: 25px; width: 260px; margin: 15px auto 20px; padding: 7px 0 8px 0; color: white; font-size: 18px; background: red; font-weight: bold;}
 
 /*.node-type-provider #left-col .bwh_votes .caption {padding: 20px 5px 2px 10px; color: gray; background: url(/sites/all/themes/bwh/css/images/sprite-2.png) repeat-x 0 -703px; font-weight: normal; margin: 0; font-size: 22px; font-family: FaktConPro-SemiBold; border-radius: 0;}*/
 .node-type-provider #left-col .bwh_votes .caption {font-weight: normal; margin: 0; font-size: 22px; font-family: FaktConPro-SemiBold; border-radius: 0; background: #23b7e8; padding: 0px 5px 0px 10px; color: white; text-align: center;}
