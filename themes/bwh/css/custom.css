@@ -1530,7 +1530,9 @@ h2.rcaption a, h3.rcaption a, /*.node-review*/ h3.rcaption a:hover{color: white;
 
 .node-review .bwh_votes .rate-other .data, .node-type-review .bwh_votes .rate-other .data{border: none;}
 .node-review .bwh_votes .rate-other .text, .node-type-review .bwh_votes .rate-other .text{/*background: none repeat scroll 0 0 #E9E9E9;*/ padding: 0;}
-.node-review .bwh_votes .rate-other .text .title, .node-type-review .bwh_votes .rate-other .text .title{ float: left; margin-right: 10px; padding-left: 10px;}
+.node-review .bwh_votes .rate-other .text.rec, .node-type-review .bwh_votes .rate-other .text.rec {text-align: center; background: #23b7e8; color: white; padding: 0; font-weight: bold; font-size: 16px; margin-top: 3px;}
+.node-review .bwh_votes .rate-other .text .title, .node-type-review .bwh_votes .rate-other .text .title {float: left; margin-right: 10px; padding-left: 10px;}
+.node-review .bwh_votes .rate-other .text.rec .title, .node-type-review .bwh_votes .rate-other .text.rec .title {float: none; margin: 0; padding: 0;}
 
 
 .review-right{margin-left: 305px; font-size: 15px;}
