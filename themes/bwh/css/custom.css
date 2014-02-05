@@ -38,7 +38,7 @@ a, a:focus{ -webkit-appearance: none; outline: none;}
 /*#c-top{height: 125px; background: white; width: 1000px; margin: auto; box-shadow: 0px 10px 60px #DDDDDD,0 0px 7px gray;}*/
 
 /*#c-top {height: 160px; background: url("images/header-back2.png") repeat-x right top white;}*/
-#c-top {height: 110px;}
+#c-top {height: 90px;}
 .front #c-top {height: /*290*/215px; background: url("images/header-back.png") repeat-x right -30px white;}
 
 .header{margin: auto; position: relative; width: 1000px;}
