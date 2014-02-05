@@ -1436,12 +1436,12 @@ list-style: none; position: relative; top: 1px; margin: 0 .2em 1px 0; border-bot
 #block-views-providers-block_topwhost_small a.visit-site-btn, 
 #block-views-providers-block_topwhost_small a.review-link {background: none; text-indent: 0; font-size: 13px; float: left; margin: 0; height: inherit; width: inherit; line-height: 14px; padding: 7px 5px 0 10px;}
 
-#block-views-providers-block_topwhost_small a.visit-site-btn {padding-left: 3px;}
+#block-views-providers-block_topwhost_small a.visit-site-btn {padding-left: 2px;}
 
 #block-views-providers-block_topwhost_small .rating span {font-size: 14px; float: left; font-weight: normal; color: gray;}
 
 #main #block-views-providers-block_topwhost_small .view-providers .fivestar-stars {position: static; padding: 0px 0 0 3px;}
-.node-type-provider #main #block-views-providers-block_topwhost_small .view-providers .fivestar-stars {position: static; padding: 3px 0 0 10px;}
+.node-type-provider #main #block-views-providers-block_topwhost_small .view-providers .fivestar-stars {position: static; padding: 3px 0 0 1px;}
 
 #block-views-providers-block_topwhost_small .p-links {clear: both;}
 
