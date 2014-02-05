@@ -15,11 +15,16 @@ body.front.one-sidebar.sidebar-second #sidebar-second{padding-top: 3px}
 
 #edit-save-draft {padding: 5px; border-radius: 5px;}
 
+body.admin-menu.not-front {margin-top: 0 !important;}
+
+
 /*#highlighted-wrapper {overflow: hidden;}*/
 #highlighted {background: white; margin: auto; padding: 0; width: 1000px; /*border: 1px solid lightgray; border-bottom: none; border-top: none;*/ /*box-shadow: 0px 10px 60px #DDDDDD,0 0px 47px #f3f3f3;*/ /*box-shadow: 0 0 0px #DDDDDD, 0 20px 7px #000000;*/}
 
 /*body.one-sidebar.sidebar-second #main {background: none repeat scroll 0 0 white; padding: 5px 0 10px 10px; width: 720px; border-radius: 0 0 0 15px;}*/
 body.one-sidebar.sidebar-second #main {/*background: none repeat scroll 0 0 white;*/ padding: 5px 0 10px 20px; width: 690px;}
+
+
 
 /*.page-node #main .main-content{float: left;}*/
 
