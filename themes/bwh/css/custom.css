@@ -182,7 +182,7 @@ ul.header-links a.Submit.Reviews{background: url("images/block-head-red.png") re
 
 /*#footer {color: lightgray; padding: 5px 0; background: black; height: 210px;}*/
 /*#footer {color: gray; padding: 5px 0; text-align: center; font-size: 14px;}*/
-#footer {color: gray; padding: 5px 0; text-align: center; font-size: 14px; background: #353535; height: 230px;}
+#footer {color: gray; padding: 5px 0; text-align: center; font-size: 14px; background: #353535; height: 210px;}
 
 #logo-footer {background: url(/sites/all/themes/bwh/css/images/bwh-logo-footer.png) no-repeat 0 0; width: 325px; height: 25px; margin: 25px auto 20px;}
 
@@ -216,7 +216,7 @@ ul.header-links a.Submit.Reviews{background: url("images/block-head-red.png") re
 #footer .menu a:hover {text-decoration: underline;}
 
 #footer .c {clear: both; padding: 15px 0 0;}
-#footer #disclamer {width: 800px; margin: auto;}
+#footer #disclamer {width: 860px; margin: auto;}
 
 
 footer .share {border-top: solid 1px lightgray; padding: 15px 0;}
