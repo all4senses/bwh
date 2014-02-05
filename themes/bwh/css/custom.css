@@ -1,6 +1,6 @@
 #listpositionsbody{-webkit-text-size-adjust: none; min-width: 1150px; position: relative;}
 
-body {background: url(/sites/all/themes/bwh/css/images/header-back2.png) repeat-x right 0px white; min-width: 1000px;}
+body {background: url(/sites/all/themes/bwh/css/images/header-back2.png) repeat-x right -30px white; min-width: 1000px;}
 body.front {background: white;}
 
 body.one-sidebar.sidebar-second #sidebar-second{padding: 0 20px 0 5px; width: 250px; margin: 0;}
