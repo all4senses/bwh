@@ -42,6 +42,11 @@ Equation for font sizing:
 /**
  * 1.GLOBAL
  */
+ 
+body {
+  /*font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Verdana, sans-serif;*/
+  font-family: Arial;
+}
 
 body {
   background: #fff;
