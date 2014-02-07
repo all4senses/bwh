@@ -1623,14 +1623,6 @@ h2.rcaption a, h3.rcaption a, /*.node-review*/ h3.rcaption a:hover{color: white;
 
 
 
-@font-face {
-  font-family: 'FaktConPro-SemiBold'; 
-  /*src: local('FaktConPro-SemiBold'), url('http://getvoip.com/sites/all/libraries/fonts/other/faktsmconpro_semibold.ttf') format("truetype");*/
-  src: local('FaktConPro-SemiBold'), url('/sites/all/themes/bwh/css/faktsmconpro_semibold.ttf') format("truetype");
-  font-weight: normal; 
-  font-style: normal;
-}
-
 /*.page-node #main .main-content h1{color: gray; font-weight: 600; font-size: 28px;}*/
 .page-node #main .main-content h1 {font-size: 38px; line-height: 45px; font-family: 'FaktConPro-SemiBold'; margin: 10px 0 2px 0;}
 
