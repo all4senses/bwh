@@ -26,7 +26,7 @@ define('PROS_HINT', 'Optional');
 define('CONS_HINT', 'Optional');
 
 // Provider data
-//$service_types = serialize(array('bwh' => 'Cloud Hosting', 'mh' => 'Managed Hosting', 'vps' => 'VPS Hosting', 'ds' => 'Dedicated Servers', 'sh' => 'Shared Hosting', 'cb' => 'Cloud Backup'));
+//$service_types = serialize(array('ch' => 'Cloud Hosting', 'mh' => 'Managed Hosting', 'vps' => 'VPS Hosting', 'ds' => 'Dedicated Servers', 'sh' => 'Shared Hosting', 'cb' => 'Cloud Backup'));
 $service_types = serialize(array('ca' => 'Canada', 'wb' => 'Website Builder', 'wp' => 'WordPress', 'ch' => 'Cloud Hosting', 'vps' => 'VPS Hosting', 'ds' => 'Dedicated Servers', 'sh' => 'Shared Hosting'));
 
 $service_descriptions = serialize(array('pti' => 'Plan title', 'sp' => 'Space', 'bw' => 'Bandwidth', 'vr-y' => 'Video Review (YouTube video ID)', 's-url' => 'Outbound Service Url', 'trend' => 'Trend'));
