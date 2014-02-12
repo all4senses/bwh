@@ -109,7 +109,7 @@ input.blur, textarea.blur,
 /*#header {padding-top: 80px; z-index: 4;} */
 #header {z-index: 4; height: 50px;}
 /*.front #header {background: url("images/header-back-flag.png") no-repeat center 61px transparent; height: 176px;}*/
-.front #header {background: url("images/header-back-banner.png") no-repeat center 61px transparent; height: 176px;}
+.front #header {background: url("images/header-back-banner.png") no-repeat center /*61*/62px transparent; height: 176px;}
 
 /*#header .intro {display: none;}*/
 #block-bwh-blocks-home-flag-header {position: relative; top: 50px;}
