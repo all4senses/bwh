@@ -108,12 +108,13 @@ input.blur, textarea.blur,
 
 /*#header {padding-top: 80px; z-index: 4;} */
 #header {z-index: 4; height: 50px;}
-.front #header {background: url("images/header-back-flag.png") no-repeat center 61px transparent; height: 176px;}
+/*.front #header {background: url("images/header-back-flag.png") no-repeat center 61px transparent; height: 176px;}*/
+.front #header {background: url("images/header-back-banner.png") no-repeat center 61px transparent; height: 176px;}
 
 /*#header .intro {display: none;}*/
 #block-bwh-blocks-home-flag-header {position: relative; top: 50px;}
 .front #header .intro {display: block; text-align: center; color: white; font-size: 36px; text-shadow: 1px 2px 3px rgb(61, 61, 61); text-rendering: optimizeLegibility !important; -webkit-font-smoothing: antialiased !important; font-weight: bold; font-family: arial; font-family: 'FaktConPro-SemiBold'; font-size: 40px;}
-#header .intro div {font-size: 18px; margin-top: 15px; text-transform: uppercase; font-weight: normal !important; font-family: arial;}
+#header .intro div {font-size: 18px; margin-top: /*15*/75px; text-transform: uppercase; font-weight: normal !important; font-family: arial;}
 
 
 #header-menu-back {background: #706e6f; height: 40px;}

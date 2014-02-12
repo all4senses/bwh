@@ -398,7 +398,7 @@ function bwh_blocks_getHomeFlagHeader() {
   
   $data = unserialize(variable_get('bwh_home_flag_header_block_data', NULL));
   
-  return '<div class="intro">' . $data['text_1'] . '<div>' . $data['text_2'] . '</div></div>';
+  return '<div class="intro">' /*. $data['text_1']*/ . '<div>' . $data['text_2'] . '</div></div>';
 }
 
 
