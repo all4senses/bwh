@@ -2170,7 +2170,7 @@ body.sidebar-second .page-compare-providers #sidebar-second {padding: 0; margin-
 
 /* Webform pages */
 
-.node-type-webform .webform-component-textarea {width: 395px;}
+/*.node-type-webform .webform-component-textarea {width: 395px;}*/
 .node-type-webform input {border: 1px solid lightgray;}
 .node-type-webform .webform-component-textarea textarea {height: 200px; border: 1px solid lightgray;}
 .node-type-webform input#edit-submit {background: url(/sites/all/themes/bwh/css/images/sprite-2.png) repeat-x 0 -803px; border: none; text-indent: -9999px; width: 130px; height: 50px; padding: 0; cursor: pointer;}
