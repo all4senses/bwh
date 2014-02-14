@@ -5886,7 +5886,8 @@ function bwh_misc_getProviderQuickData($target, $data) {
       
       if (!empty($data['data']->votingapi_cache_node_percent_overall_average_value)) {
                 
-        $out = '<div class="rating"><span>Rating: ' . number_format($data['data']->votingapi_cache_node_percent_overall_average_value * 0.05, 1) . '/5</span> ' . theme('bwh_misc_fivestar_static', array('rating' => $data['data']->votingapi_cache_node_percent_overall_average_value, 'stars' => 5, 'tag' => 'overall', 'widget' => array('name' => 'stars', 'css' => 'stars.css'))) . '</div>';
+        //$out = '<div class="rating"><span>Rating: ' . number_format($data['data']->votingapi_cache_node_percent_overall_average_value * 0.05, 1) . '/5</span> ' . theme('bwh_misc_fivestar_static', array('rating' => $data['data']->votingapi_cache_node_percent_overall_average_value, 'stars' => 5, 'tag' => 'overall', 'widget' => array('name' => 'stars', 'css' => 'stars.css'))) . '</div>';
+        $out = '<div class="rating"><span>Rating:</span> ' . theme('bwh_misc_fivestar_static', array('rating' => $data['data']->votingapi_cache_node_percent_overall_average_value, 'stars' => 5, 'tag' => 'overall', 'widget' => array('name' => 'stars', 'css' => 'stars.css'))) . '</div>';
         
         //$out = '<div class="details"><a ' . ( (isset($data['target']) && $data['target'] == 'iframe') ? 'target="_blank" ' : '') . 'href="' . url('node/' . $data['data']->nid) . '"><div>' . format_plural($data['data']->votingapi_cache_node_percent_overall_count_value, '1 Review', '@count Reviews') . '</div></a></div>' . $out ;
       }
