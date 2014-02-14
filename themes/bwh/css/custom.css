@@ -1488,7 +1488,8 @@ list-style: none; position: relative; top: 1px; margin: 0 .2em 1px 0; border-bot
 #block-views-providers-block-topwhost-small a.visit-site-btn {padding-left: 6px;}
 
 #block-views-providers-block-topwhost-small .rating span {font-size: 14px; float: left; font-weight: normal; color: gray; padding-right: 1px;}
-#block-views-providers-block-topwhost-small .fivestar-stars {position: static !important; padding: 3px 0 0 1px; float: left;}
+/*#block-views-providers-block-topwhost-small .fivestar-stars {position: static !important; padding: 3px 0 0 1px; float: left;}*/
+#block-views-providers-block-topwhost-small .fivestar-stars {position: static !important; padding: 4px 0 0 3px; float: left;}
 #block-views-providers-block-topwhost-small .p-links {clear: both;}
 
 
