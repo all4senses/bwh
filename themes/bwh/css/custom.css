@@ -44,7 +44,8 @@ a, a:focus{ -webkit-appearance: none; outline: none;}
 
 /*#c-top {height: 160px; background: url("images/header-back2.png") repeat-x right top white;}*/
 #c-top {height: 90px;}
-.front #c-top {height: /*290*/215px; background: url("images/header-back.png") repeat-x right -30px white;}
+/*.front #c-top {height: 215px; background: url("images/header-back.png") repeat-x right -30px white;}*/
+.front #c-top {height: /*290*/215px; background: url("images/header-back-ca.png") repeat-x right -30px white;}
 
 .header{margin: auto; position: relative; width: 1000px;}
 
@@ -108,8 +109,8 @@ input.blur, textarea.blur,
 
 /*#header {padding-top: 80px; z-index: 4;} */
 #header {z-index: 4; height: 50px;}
-/*.front #header {background: url("images/header-back-flag.png") no-repeat center 61px transparent; height: 176px;}*/
-.front #header {background: url("images/header-back-banner.png") no-repeat center /*61*/62px transparent; height: 176px;}
+.front #header {background: url("images/header-back-flag.png") no-repeat center 61px transparent; height: 176px;}
+/*.front #header {background: url("images/header-back-banner.png") no-repeat center 62px transparent; height: 176px;}*/
 
 /*#header .intro {display: none;}*/
 #block-bwh-blocks-home-flag-header {position: relative; top: 50px;}
