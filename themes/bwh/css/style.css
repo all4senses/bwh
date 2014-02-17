@@ -97,7 +97,7 @@ Equation for font sizing:
   font-family: 'FaktConPro-SemiBold'; 
   /*src: local('FaktConPro-SemiBold'), url('http://getvoip.com/sites/all/libraries/fonts/other/faktsmconpro_semibold.ttf') format("truetype");*/
   
-  /*src: local('FaktConPro-SemiBold'), url('/sites/all/themes/ch/css/faktsmconpro_semibold.ttf') format("truetype");*/
+  /*src: local('FaktConPro-SemiBold'), url('/sites/all/themes/bwh/css/faktsmconpro_semibold.ttf') format("truetype");*/
   
   src: url(/sites/all/libraries/fonts/other/faktsmconpro_semibold.eot);
   /*src: local('FaktConPro-SemiBold'), url('/sites/all/libraries/fonts/other/faktsmconpro_semibold.ttf') format("truetype");*/
