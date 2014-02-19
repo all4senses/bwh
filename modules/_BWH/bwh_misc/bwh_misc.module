@@ -627,7 +627,7 @@ function bwh_misc_trackClick_ajax() {
       global $user;
       $data = NULL;
 //      $data = serialize(array(
-//        'referer' => @$_SESSION['gv_current_http_referer'],
+//        'referer' => @$_SESSION['bwh_current_http_referer'],
 //        'click_page' => $post['click_page'],
 //        'user' => array('name' => $user->name, 'hostname' => $user->hostname),
 //      ));
@@ -708,7 +708,7 @@ function bwh_misc_goToExternalUrl2() {
             }
             
 //            $data = serialize(array(
-//              'referer' => @$_SESSION['gv_current_http_referer'],
+//              'referer' => @$_SESSION['bwh_current_http_referer'],
 //              'click_on_page' => @$_SERVER['HTTP_REFERER'],
 //              'user' => array('name' => $user->name, 'hostname' => $user->hostname),
 //            ));
@@ -721,7 +721,7 @@ function bwh_misc_goToExternalUrl2() {
                 'url' => $url,
                 'timestamp' => time(),
                   
-                'referer' => @$_SESSION['gv_current_http_referer'],
+                'referer' => @$_SESSION['bwh_current_http_referer'],
                 'click_page' => @$_SERVER['HTTP_REFERER'],
                 'uname' => isset($user->name) ? $user->name : '',
                 'ip' => $user->hostname,
@@ -747,7 +747,7 @@ function bwh_misc_goToExternalUrl2() {
  */
 function bwh_misc_goToExternalUrl() {
   
-  //dpm($_SESSION['gv_current_http_referer']);
+  //dpm($_SESSION['bwh_current_http_referer']);
   //dpm($_GET);
   
   // Save a tracked redirection.
@@ -777,7 +777,7 @@ function bwh_misc_goToExternalUrl() {
             global $user;
             $data = NULL;
 //            $data = serialize(array(
-//              'referer' => @$_SESSION['gv_current_http_referer'],
+//              'referer' => @$_SESSION['bwh_current_http_referer'],
 //              'click_on_page' => @$_SERVER['HTTP_REFERER'],
 //              'user' => array('name' => $user->name, 'hostname' => $user->hostname),
 //            ));
