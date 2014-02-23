@@ -612,7 +612,7 @@ function bwh_process_page(&$variables) {
   //
   ////bwh_misc_addMetatag('stylesheet', NULL, 'http://fonts.googleapis.com/css?family=Open+Sans|Ubuntu:500', 'NA', 'text/css');
   ///////bwh_misc_addMetatag('stylesheet', NULL, 'http://fonts.googleapis.com/css?family=Open+Sans:normal,bold|Ubuntu:500', 'NA', 'text/css');
-  ch_misc_addMetatag('stylesheet', NULL, 'http://fonts.googleapis.com/css?family=Open+Sans:normal,bold|Ubuntu:500|Roboto:500', 'NA', 'text/css');
+  bwh_misc_addMetatag('stylesheet', NULL, 'http://fonts.googleapis.com/css?family=Open+Sans:normal,bold|Ubuntu:500|Roboto:500', 'NA', 'text/css');
   
   // Local fonts, taken from the remote side.  
   // the code places right in the style.css, so is commented out here
