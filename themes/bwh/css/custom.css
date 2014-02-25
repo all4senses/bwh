@@ -2236,7 +2236,7 @@ h2.with-logo .title {float: left; display: none;}
 .p-teaser h2 a {color: #478AFD;}
 .p-teaser h2 a:hover {text-decoration: underline;}
 .p-teaser .logo div {text-align: center;}
-.p-teaser .logo div div {margin-bottom: 3px;}
+.p-teaser .logo div div {margin-bottom: 3px !important;}
 /*
 .p-teaser .about {position: absolute; top: 30px; left: 305px; width: 400px;}
 .p-teaser .about p {line-height: 16px;}
