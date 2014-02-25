@@ -5606,7 +5606,7 @@ function bwh_misc_rebuildProvidersLogosSprites($listing_pos_fields = NULL, $all_
     //'home_top_providers' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('block_top_business_cmp', 'block_1'), 'listing_pos_fields' => array('field_p_erating', 'field_p_erating_residential')),
     
     'home_top_providers' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('block_h_top_sh_table'), 'listing_pos_fields' => array('field_p_listposition_sh')),
-    'home_top_providers_teasers' => array('image_style' => 'logo_provider_teaser', 'providers_views_displays' => array('block_h_top_sh_table'), 'listing_pos_fields' => array('field_p_listposition_sh')),
+    'home_top_providers_teasers' => array('image_style' => 'logo_provider_teaser', 'providers_views_displays' => array('block_h_top_sh_teasers'), 'listing_pos_fields' => array('field_p_listposition_sh')),
       
     'top_webhost_small_block' => array('image_style' => 'article_thumbnail_side_block', 'providers_views_displays' => array('block_topwhost_small'), 'listing_pos_fields' => array('field_p_listposition_sh')),
   
