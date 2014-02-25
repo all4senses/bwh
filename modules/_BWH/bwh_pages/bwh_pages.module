@@ -2559,6 +2559,24 @@ function bwh_pages_form_alter(&$form, &$form_state, $form_id) {
           */
             
       
+        
+        
+        
+        
+              // Fields to check if we need to rebuild providers sprites with this provider logo.
+              //$erating_fields_names = array('field_p_erating', 'field_p_erating_residential', 'field_p_erating_sip', 'field_p_erating_pbx', 'field_p_erating_mo', 'field_p_erating_ifa', 'field_p_erating_cc', 'field_p_erating_bu_ca', 'field_p_erating_re_ca', 'field_p_erating_smbv');
+              $erating_fields_names = array('field_p_listposition', 'field_p_listposition_ch', 'field_p_listposition_vps', 'field_p_listposition_ds', 'field_p_listposition_wp', 'field_p_listposition_ca', 'field_p_listposition_wb', 'field_p_listposition_sh');
+
+              
+              
+              foreach ($erating_fields_names as $erating_field) {
+                $erating_fields[$erating_field] = $form[$erating_field]['und'][0]['value']['#default_value'];
+              }
+
+              $form['erating_fields_original'] = array(
+                '#type' => 'hidden',
+                '#default_value' => serialize($erating_fields),
+              );
       
               
               
@@ -3511,6 +3529,50 @@ function bwh_pages_validateForm_provider(&$form, &$form_state) {
   } // foreach ($p_data['s'] as $service_type_short => $service) {
   
     
+  
+  
+  
+  
+  
+  
+  
+  
+  // Prepare for providers logos sprites regeneration.
+  // They will be regenerated (if needed) in hook_node_update / hook_node_insert.
+
+  $last_erating_fields_different = NULL;
+  $erating_fields_before = unserialize($form_state['values']['erating_fields_original']);
+  
+  //dpm($erating_fields_before);
+  
+  // Find out if some of listing fields have been changed.
+  foreach($erating_fields_before as $erating_field_title => $erating_field_before) {
+    $erating_fields_submitted[$erating_field_title] = $form_state['values'][$erating_field_title]['und'][0]['value'];
+    if ($erating_field_before != @$form_state['values'][$erating_field_title]['und'][0]['value']) {
+      $last_erating_fields_different[] = $erating_field_title;
+    }
+  }
+
+  //dpm($erating_fields_before);
+  //dpm($last_erating_fields_different);
+  
+  /*
+      if (empty($last_erating_fields_different)) {
+        dpm('No changed listing fields this time!');
+      }
+      else {
+        dpm($last_erating_fields_different);
+      }
+  */
+  
+  $p_data['last_erating_fields_different'] = $last_erating_fields_different;
+  //dpm($last_erating_fields_different);
+  
+  
+  
+  
+  
+  
   // Save collected data from temporary fields and weights to a real placeholder field field_p_data as a serialized data.
   form_set_value($form['field_p_data'], array('und' => array(0 => array('value' => serialize($p_data)))), $form_state);
   
@@ -3846,10 +3908,23 @@ function bwh_pages_node_update($node) {
   
   if ($node->type == 'provider') {
     
+    // Reset a cache because without it the DB now contains the old data (before the node save).
+    entity_get_controller('node')->resetCache(array($node->nid));
+      
     // Reset ProvidersDataQuick in session var.
-    ////bwh_misc_getProvidersDataQuick('all', FALSE, TRUE);
-    // Resen only a current provider data.
-    bwh_misc_getProvidersDataQuick('all', FALSE, FALSE, $node->nid);
+    ///bwh_misc_getProvidersDataQuick('all', FALSE, TRUE);   
+
+    // OR BETTER:
+    // Reset only a current provider data.
+    $p_data_quick = bwh_misc_getProvidersDataQuick('all', FALSE, FALSE, $node->nid);
+    
+    // Regenerate providers logos sprites (if needed). The data was prepared in ch_pages_submitForm_provider(&$form, &$form_state)
+    $p_data = unserialize($node->field_p_data['und'][0]['value']);
+    ////if (!empty($p_data['last_erating_fields_different'])) 
+      {
+          bwh_misc_rebuildProvidersLogosSprites($p_data['last_erating_fields_different'], $p_data_quick);
+    }
+
   }
 }
 

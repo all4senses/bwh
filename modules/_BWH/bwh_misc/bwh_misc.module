@@ -3962,6 +3962,13 @@ function bwh_misc_curlGET($url) {
  */
 function bwh_misc_mail($key, &$message, $params) {
   switch ($key) {
+    
+    
+    case 'new_file_was_uploaded':
+      $message['subject'] = 'CH New file was uploaded';
+      $message['body'][] = $params['report'];
+      break;
+    
     case 'request_quote':
       $message['subject'] = 'BWH New request for a quote';
       $message['body'][] = theme('bwh_misc_requestQuote_mail', $params['request_data']);
@@ -5368,6 +5375,433 @@ function bwh_misc_getProvidersFees($scope = 'all') {
 }
 
 
+
+
+
+
+
+
+
+/**
+ * Creates imagecache image if it doesnt exist.
+ */
+function bwh_misc_createCachedImageIfNotExists($relative_path, $style_name = NULL, $force_recreate = FALSE) {
+  // Assure that the imagecache file is created already, or recreate it.
+  $relative_path = str_replace('http://bestwebhosting.ca/', '', $relative_path);
+  
+  if ($force_recreate || !file_exists($relative_path)) {
+    
+    
+    // Find out the style name from 'f/styles/logo_provider_chart_main/public/p/logos/Nextiva-Logo2.png';
+    if (!$style_name) {
+      $path_part = explode('/styles/', $relative_path);
+      $path_part = explode('/public/', $path_part[1]);
+      $style_name = $path_part[0];
+    }
+    $style = image_style_load($style_name);
+    //$styled_file_path = 'f/styles/logo_provider_chart_main/public/p/logos/Nextiva-Logo2.png';
+    //$original_file_path = 'f/p/logos/Nextiva-Logo.png';
+    $file_path = str_replace('styles/' . $style_name . '/public/', '', $relative_path);
+    $source = bwh_misc_getStreamUriFromRelativePath($file_path);
+    $destination = image_style_path($style_name, $source);
+    if (!image_style_create_derivative($style, $source, $destination)) {
+      return FALSE;
+    }
+    
+    return 'updated';
+  }
+  
+  return TRUE;
+}
+
+
+/**
+ * Loads an image object from a file.
+ *
+ */
+function bwh_misc_loadImage($imgname, $type = null) {
+
+    if(!$type)
+    {
+        $type = explode('.', $imgname);
+        $type = $type[count($type)-1];
+    }
+
+    switch(strtolower($type))
+    {
+
+        case 'png':
+            $im = @imagecreatefrompng($imgname);
+            break;
+
+        case 'jpg':
+        case 'jpeg':
+            $im = @imagecreatefromjpeg($imgname);
+            break;
+          
+        case 'gif':
+            $im = @imagecreatefromgif($imgname);
+            break;
+       
+       default:
+         $im = NULL;
+    }
+
+    if(!$im)
+    {
+        /*
+
+        // an image with error message
+
+        $im= imagecreate (150, 30);
+        $bgc = imagecolorallocate ($im, 255, 255, 255);
+        $tc= imagecolorallocate ($im, 0, 0, 0);
+        imagefilledrectangle ($im, 0, 0, 150, 30, $bgc);
+        imagestring ($im, 1, 5, 5, "Error loading $imgname", $tc);
+
+        */
+    }
+
+    return $im;
+}
+
+
+/**
+ * 
+ * Try to optimize an image with applications installed on the server.
+ * 
+ * Depends on the imageapi_optimize module.
+ * 
+ */
+function bwh_misc_imageOptimizeOnServer($file) {
+  // Code example from the image_optimize.module
+  $dst = drupal_realpath($file['uri']);
+  //bwh_misc_sendMessage('new_file_was_uploaded', array('report' => 'dst: ' . $dst));
+  
+  switch ($file['filemime']) {
+    case 'image/png':
+      if ($cmd = variable_get('imageapi_optimize_optipng', '')) { // /usr/bin/optipng, should be installed in system
+        exec("$cmd -o5 -quiet ". escapeshellarg($dst));
+      }
+      if ($cmd = variable_get('imageapi_optimize_pngcrush', '')) {
+        $temp = drupal_realpath(drupal_tempnam('temporary://', 'file'));
+        exec("$cmd -rem alla -reduce -brute -q ". escapeshellarg($dst) ." ". escapeshellarg($temp) ." && mv ". escapeshellarg($temp) ." ". escapeshellarg($dst));
+      }
+      if ($cmd = variable_get('imageapi_optimize_advpng', '')) {
+        exec("$cmd -z4q ". escapeshellarg($dst), $return, $output);
+      }
+      break;
+
+    case 'image/jpeg':
+      if ($cmd = variable_get('imageapi_optimize_jpegtran', '')) { // /usr/bin/jpegtran, should be installed in system
+        _imageapi_optimize_exec("$cmd -copy none -optimize -progressive ". escapeshellarg($dst), $dst);
+      }
+      if ($cmd = variable_get('imageapi_optimize_jfifremove', '')) {
+        _imageapi_optimize_exec("$cmd < ". escapeshellarg($dst), $dst);
+      }
+      break;
+  }
+
+}
+
+
+/**
+ * Return sprite image with link for a provider from certain sprite by nid.
+ */
+function bwh_misc_getProviderLogoFromSprite($nid, $sprite_name, $all_data_quick = NULL) {
+
+  $bwh_providers_sprites = variable_get('bwh_providers_sprites');
+  if (isset($bwh_providers_sprites[$sprite_name]['data'][$nid])) {
+    $out_sprite_path = 'f/p/';
+    if (!$all_data_quick) {
+      $all_data_quick = bwh_misc_getProvidersDataQuick();
+    }
+    //dpm($bwh_providers_sprites[$sprite_name]['data'][$nid]);
+    
+    if ($bwh_providers_sprites[$sprite_name]['data'][$nid]['h'] < 45) {
+      return '<div style="width: ' . $bwh_providers_sprites[$sprite_name]['data'][$nid]['w'] . 'px; height: ' . (45 - $bwh_providers_sprites[$sprite_name]['data'][$nid]['h'])/2 . 'px"></div><div title="' . $all_data_quick[$nid]['name'] . ' site" style="margin: auto; width: ' . $bwh_providers_sprites[$sprite_name]['data'][$nid]['w'] . 'px; height: ' . $bwh_providers_sprites[$sprite_name]['data'][$nid]['h'] . 'px; background: url('. "'/" . $out_sprite_path . $sprite_name . '.png?' . $bwh_providers_sprites[$sprite_name]['time'] . "')" . ' no-repeat 0 -' . $bwh_providers_sprites[$sprite_name]['data'][$nid]['y'] . 'px transparent;"></div><div style="width: ' . $bwh_providers_sprites[$sprite_name]['data'][$nid]['w'] . 'px; height: ' . (45 - $bwh_providers_sprites[$sprite_name]['data'][$nid]['h'])/2 . 'px"></div>';
+    }
+    else 
+      {
+      return '<div title="' . $all_data_quick[$nid]['name'] . ' site" style="margin: auto; width: ' . $bwh_providers_sprites[$sprite_name]['data'][$nid]['w'] . 'px; height: ' . $bwh_providers_sprites[$sprite_name]['data'][$nid]['h'] . 'px; background: url('. "'/" . $out_sprite_path . $sprite_name . '.png?' . $bwh_providers_sprites[$sprite_name]['time'] . "')" . ' no-repeat 0 -' . $bwh_providers_sprites[$sprite_name]['data'][$nid]['y'] . 'px transparent;"></div>';
+    }
+    
+  }
+  return NULL;
+}        
+
+
+/**
+ * Implementation of hook_file_insert().
+ * 
+ * Try to optimize images on upload.
+ * 
+ */
+function bwh_misc_file_insert($file) {
+  
+  //$file_data = print_r($file, TRUE);
+  //bwh_misc_sendMessage('new_file_was_uploaded', array('report' => $file_data));
+  
+  // Write to log.file
+  //exec('echo "$(date ' . "'+%Y-%m-%d %H:%M:%S'" . ') ---->UPLOAD--->'. escapeshellarg($file->uri) . '" >>~/bwh_image_optimize.log');
+  
+  // Settings on this page http://bestwebhosting.ca/admin/config/media/image-toolkit
+  /*
+  /usr/local/bin/advpng
+  /usr/bin/optipng
+  /usr/bin/pngcrush
+  
+  /usr/bin/jpegtran
+  /usr/local/bin/jfifremove
+  */
+  
+//  global $user;
+//  if ($user->uid != 1) {
+//    return;
+//  }
+  
+  
+  bwh_misc_imageOptimizeOnServer(array('uri' => $file->uri, 'filemime' => $file->filemime));
+  
+  /*
+  // Code example from the image_optimize.module
+  $dst = drupal_realpath($file->uri);
+  //bwh_misc_sendMessage('new_file_was_uploaded', array('report' => 'dst: ' . $dst));
+  
+  switch ($file->filemime) {
+    case 'image/png':
+      if ($cmd = variable_get('imageapi_optimize_optipng', '')) { // /usr/bin/optipng, should be installed in system
+        exec("$cmd -o5 -quiet ". escapeshellarg($dst));
+      }
+      if ($cmd = variable_get('imageapi_optimize_pngcrush', '')) {
+        $temp = drupal_realpath(drupal_tempnam('temporary://', 'file'));
+        exec("$cmd -rem alla -reduce -brute -q ". escapeshellarg($dst) ." ". escapeshellarg($temp) ." && mv ". escapeshellarg($temp) ." ". escapeshellarg($dst));
+      }
+      if ($cmd = variable_get('imageapi_optimize_advpng', '')) {
+        exec("$cmd -z4q ". escapeshellarg($dst), $return, $output);
+      }
+      break;
+
+    case 'image/jpeg':
+      if ($cmd = variable_get('imageapi_optimize_jpegtran', '')) { // /usr/bin/jpegtran, should be installed in system
+        _imageapi_optimize_exec("$cmd -copy none -optimize -progressive ". escapeshellarg($dst), $dst);
+      }
+      if ($cmd = variable_get('imageapi_optimize_jfifremove', '')) {
+        _imageapi_optimize_exec("$cmd < ". escapeshellarg($dst), $dst);
+      }
+      break;
+  }
+  */
+  
+  
+}
+
+
+/**
+ * Rebuilds providers logos sprites.
+ */
+function bwh_misc_rebuildProvidersLogosSprites($listing_pos_fields = NULL, $all_data_quick = NULL) {
+  
+  $providers_logos_sprites = array(
+    //'home_top_providers' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('block_top_business_cmp', 'block_1'), 'listing_pos_fields' => array('field_p_erating', 'field_p_erating_residential')),
+    
+    'home_top_providers' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('block_h_top_sh_table'), 'listing_pos_fields' => array('field_p_listposition_sh')),
+      
+    'top_webhost_small_block' => array('image_style' => 'article_thumbnail_side_block', 'providers_views_displays' => array('block_topwhost_small'), 'listing_pos_fields' => array('field_p_listposition_sh')),
+  
+      
+    'top_sh_providers' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('block_top_sh_p_table'), 'listing_pos_fields' => array('field_p_listposition_sh')),
+      
+    'top_wp_providers' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('block_top_wp_p_table'), 'listing_pos_fields' => array('field_p_listposition_wp')),
+      
+    'top_vps_providers' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('block_top_vps_p_table'), 'listing_pos_fields' => array('field_p_listposition_vps')),
+      
+    'top_wb_providers' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('block_top_wb_p_table'), 'listing_pos_fields' => array('field_p_listposition_wb')),
+      
+    'top_ca_providers' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('block_top_ca_p_table'), 'listing_pos_fields' => array('field_p_listposition_ca')),
+      
+    'top_ds_providers' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('block_top_ds_p_table'), 'listing_pos_fields' => array('field_p_listposition_ds')),
+      
+    'top_ch_providers' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('block_top_ch_p_table'), 'listing_pos_fields' => array('field_p_listposition_ch')),
+      
+      
+      
+      
+     /* 
+    'top_bu_providers' => array('image_style' => 'logo_provider_chart_big', 'providers_views_displays' => array('block_p_bu_page', 'block_p_bu_page_cmp'), 'listing_pos_fields' => array('field_p_erating')),
+    
+    'top_re_providers' => array('image_style' => 'logo_provider_vertical_chart', 'providers_views_displays' => array('block_p_re_page'), 'listing_pos_fields' => array('field_p_erating_residential')),
+    'top_re_providers_chart_big' => array('image_style' => 'logo_provider_chart_big', 'providers_views_displays' => array('block_p_re_page'), 'listing_pos_fields' => array('field_p_erating_residential')),   
+    
+    'top_bu_providers_rev' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('bl_p_bu_rev_page_cmp'), 'listing_pos_fields' => array('field_p_erating')),
+    'top_re_providers_rev' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('bl_p_re_rev_page'), 'listing_pos_fields' => array('field_p_erating_residential')),
+    
+      
+    'top_pbx_providers' => array('image_style' => 'logo_provider_vertical_chart', 'providers_views_displays' => array('block_p_pbx_page', 'block_p_pbx_page_cmp'), 'listing_pos_fields' => array('field_p_erating_pbx')),
+   
+    'top_sip_providers' => array('image_style' => 'logo_provider_chart_big', 'providers_views_displays' => array('block_p_sip_page'), 'listing_pos_fields' => array('field_p_erating_sip')),
+    
+    'top_ifa_providers' => array('image_style' => 'logo_provider_chart_big', 'providers_views_displays' => array('block_p_ifa_page'), 'listing_pos_fields' => array('field_p_erating_ifa')),
+      
+    'top_ca_providers' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('block_p_bu_ca_page', 'block_p_bu_ca_page_cmp', 'block_p_re_ca_page'), 'listing_pos_fields' => array('field_p_erating_bu_ca', 'field_p_erating_re_ca')),
+      
+    'all_reviews_providers' => array('image_style' => 'logo_provider_chart_big', 'providers_views_displays' => array('block_top_bu_ar', 'block_top_bu_ar_cmp', 'block_top_re_ar'), 'listing_pos_fields' => array('field_p_erating', 'field_p_erating_residential')), 
+    */
+  );
+  
+  // Skip refreshing sprites without selected listing fields.
+  if($listing_pos_fields && $bwh_providers_sprites = variable_get('bwh_providers_sprites')) {
+    foreach ($providers_logos_sprites as $providers_logos_sprite_title => $providers_logos_sprite_data) {
+      $in_array = FALSE;
+      foreach($listing_pos_fields as $listing_pos_field) {
+        if (in_array($listing_pos_field, $providers_logos_sprite_data['listing_pos_fields'])) {
+          $in_array = TRUE;
+        }
+      }
+      if (!$in_array) {
+        unset($providers_logos_sprites[$providers_logos_sprite_title]);
+      }
+    }
+  }
+  else {
+    $bwh_providers_sprites = array();
+  }
+  
+  //cache_clear_all('*', 'cache_views', TRUE);
+  cache_clear_all('*', 'cache_views_data', TRUE);
+  
+  if (!$all_data_quick) {
+    $all_data_quick = bwh_misc_getProvidersDataQuick();
+  }
+  
+  //$image_style_name = 'logo_provider_chart_main';
+  
+  foreach ($providers_logos_sprites as $providers_logos_sprite_name => $providers_logos_sprite) {
+    
+    // Decrease width of images for vertical charts pages.
+//    if ($providers_logos_sprite_name == 'top_bu_providers') {
+//      $image_style_name = 'logo_provider_vertical_chart';
+//      dpm('new style used');
+//    }
+    
+    $image_style_name = $providers_logos_sprite['image_style'];
+    //dpm($providers_logos_sprite_name . ' => ' . $image_style_name);
+    
+    foreach ($providers_logos_sprite['providers_views_displays'] as $providers_views_display) {
+      
+      $view = views_get_view('providers');
+      $view->execute($providers_views_display);
+      
+      if ($view->result) {
+        
+        foreach ($view->result as $provider) {
+          
+          $input_providers_data[$providers_logos_sprite_name][$provider->nid]['name'] = $all_data_quick[$provider->nid]['name'];
+          
+          $input_providers_data[$providers_logos_sprite_name][$provider->nid]['themed_image_src'] = preg_replace('|^(.*)\?(.*)$|', '$1', str_replace('http://bestwebhosting.ca/', '', image_style_url($image_style_name, $all_data_quick[$provider->nid]['i_logo_uri'])));
+          $input_providers_data[$providers_logos_sprite_name][$provider->nid]['themed_image_src'] = urldecode($input_providers_data[$providers_logos_sprite_name][$provider->nid]['themed_image_src']); //str_replace('%20', ' ', $input_providers_data[$providers_logos_sprite_name][$provider->nid]['themed_image_src']);
+                  
+          // Assure that the imagecache file is created already, or recreate it.
+          bwh_misc_createCachedImageIfNotExists($input_providers_data[$providers_logos_sprite_name][$provider->nid]['themed_image_src']);
+          
+          $input_providers_data[$providers_logos_sprite_name][$provider->nid]['themed_image_html'] = theme('bwh_misc_image_style', array('style_name' => $image_style_name, 'path' => $all_data_quick[$provider->nid]['i_logo_uri'], 'alt' =>  $all_data_quick[$provider->nid]['i_logo_alt'], 'title' =>  $all_data_quick[$provider->nid]['i_logo_title'] ));
+          
+          //$out .= $input_providers_data[$providers_logos_sprite_name][$provider->nid]['themed_image_html'];
+        }
+        
+      }
+      
+    }
+    
+  } 
+  
+  $out_sprite_path = 'f/p/';
+  $out_sprite_ext = 'png';
+  
+  foreach ($input_providers_data as $providers_logos_sprite_name => $providers_logos_sprite) {
+    
+    $out_sprite['file'] = $out_sprite_path . $providers_logos_sprite_name . '.' . $out_sprite_ext;
+    $out_sprite['uri'] = 'public://p/' . $providers_logos_sprite_name . '.' . $out_sprite_ext;
+    $out_size = array();
+    
+    foreach ($providers_logos_sprite as $nid => $provider) {
+
+      if($input_image['info'] = getimagesize($provider['themed_image_src'])) {
+        // Set a height (all providers logos height + 10px between each others).
+        if (empty($out_size['h'])) {
+          $out_size['h'] = $input_image['info'][1];
+        }
+        else {
+          $out_size['h'] += 10 + $input_image['info'][1];
+        }
+        // Set once a width of the sprite by the widest one.
+        if (empty($out_size['w']) || $out_size['w'] < $input_image['info'][0]) {
+          $out_size['w'] = $input_image['info'][0];
+        }
+      }
+    }
+    
+    $out_sprite['img'] = imagecreatetruecolor($out_size['w'], $out_size['h']);
+  
+    // Make the background transparent.
+    $white = imagecolorallocate($out_sprite['img'], 255, 255, 255);
+    $transparent = imagecolortransparent($out_sprite['img'],$white);
+
+    // Set transparency for the output image.
+    imagefilledrectangle($out_sprite['img'], 0, 0, $out_size['w'], $out_size['h'], $transparent);
+  
+    $current_y = 0;
+    
+    // Reset the sprite data to avoid remaining the old data. 
+    $bwh_providers_sprites[$providers_logos_sprite_name] = array();
+    
+    foreach ($providers_logos_sprite as $nid => $provider) {
+      if ($input_image['img'] = bwh_misc_loadImage($provider['themed_image_src'])) {
+        //$input_image['info'] = getimagesize(str_replace('%20', ' ', $provider['themed_image_src']));
+        $input_image['info'] = getimagesize(urldecode($provider['themed_image_src']));
+        imagecopy($out_sprite['img'], $input_image['img'], 0, $current_y, 0, 0, $input_image['info'][0], $input_image['info'][1]);
+        
+        $bwh_providers_sprites[$providers_logos_sprite_name]['data'][$nid]['y'] = $current_y;
+        $bwh_providers_sprites[$providers_logos_sprite_name]['data'][$nid]['w'] = $input_image['info'][0];
+        $bwh_providers_sprites[$providers_logos_sprite_name]['data'][$nid]['h'] = $input_image['info'][1];
+        $bwh_providers_sprites[$providers_logos_sprite_name]['time'] =  time();
+        
+        $current_y += 10 + $input_image['info'][1];
+      }
+    }
+  
+    // Save a new sprite file.
+    imagepng($out_sprite['img'], $out_sprite['file']);
+    
+    // Optimize the image.
+    bwh_misc_imageOptimizeOnServer(array('uri' => $out_sprite['uri'], 'filemime' => 'image/png'));
+
+    // Show image.
+    //Header("Content-type: image/png");
+    //imagepng($out_sprite['img'], NULL, 0);
+  }
+    
+  //dpm($bwh_providers_sprites);
+  //dpm($input_providers_data);
+  
+  variable_set('bwh_providers_sprites', $bwh_providers_sprites);
+  
+  
+  //drupal_flush_all_caches();
+  // Not so hard clearing.
+  views_invalidate_cache();
+  cache_clear_all('*', 'cache_views_data', TRUE);
+  
+  drupal_set_message('Cache is flushed after the prividers logos sprites regenerating.', 'warning');
+  
+  if (!$listing_pos_fields) {
+    drupal_set_message('All providers logos sprites have been regenerated!');
+    drupal_goto();
+  }
+  
+}
+
+
 /**
  * Returns all quick data for available providers.
  */
@@ -5589,55 +6023,143 @@ function bwh_misc_getProviderQuickData($target, $data) {
       $all_data_quick = bwh_misc_getProvidersDataQuick();
       $out = '';
       
-//      if (!empty($all_data_quick[$data['data']->nid]['i_web'])) {
-//        $link = $all_data_quick[$data['data']->nid]['i_web'];
-//      }
-//      else {
-//        $link = url('node/' . $data['data']->nid);
-//      }
+      //dpm(@$data['view_display']);
+      //return $all_data_quick[$data['data']->nid]['name'];
+    
       
-      if (!empty($all_data_quick[$data['data']->nid]['i_logo_uri'])) {
-        
-        if ($target == 'logo_chart') {
-          $image_style_name = 'logo_provider_chart_main';
-        } 
-        elseif ($target == 'logo_chart_iframe') {
-          $image_style_name = 'logo_provider_chart_iframe';
-        }
-        elseif ($target == 'logo_article') {
-          $image_style_name = 'thumbnail';
-        }
-        elseif ($target == 'logo_small_block') {
-          $image_style_name = 'article_thumbnail_side_block';
-        }
-        
-        $image = theme('bwh_misc_image_style', array('style_name' => $image_style_name, 'path' => $all_data_quick[$data['data']->nid]['i_logo_uri'], 'alt' =>  $all_data_quick[$data['data']->nid]['i_logo_alt'], 'title' =>  $all_data_quick[$data['data']->nid]['i_logo_title'] ));
-        
-//        global $user;
-//        if ($data['data']->nid == 88 && $user->hostname == '109.171.109.18') { // 88 - hostgator
-//           dpm($all_data_quick[$data['data']->nid]);
-//        }
-        
-        //$out = bwh_misc_getTrackingUrl($image, NULL, $data['data']->nid, NULL, NULL, @$data['service_type']);
-        $out = bwh_misc_getTrackingUrl($image, $all_data_quick[$data['data']->nid]['subpath'], $data['data']->nid, NULL, NULL, @$data['service_type']);
-        //$out .= bwh_misc_getTrackingUrl('', NULL, $data['data']->nid, NULL, 'reviews visit-site-btn', @$data['service_type']);
-      }
-      else {
-        if (!empty($all_data_quick[$data['data']->nid]['name'])) {
-          //$out = bwh_misc_getTrackingUrl($all_data_quick[$data['data']->nid]['name'], NULL, $data['data']->nid, NULL, NULL, @$data['service_type']);
-          $out = bwh_misc_getTrackingUrl($all_data_quick[$data['data']->nid]['name'], $all_data_quick[$data['data']->nid]['subpath'], $data['data']->nid, NULL, NULL, @$data['service_type']);
+      
+      
+      // Render a logo from sprite.
+      
+      
+      //'home_top_providers' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('block_h_top_sh_table'), 'listing_pos_fields' => array('field_p_listposition_sh')),
+      //'top_webhost_small_block' => array('image_style' => 'article_thumbnail_side_block', 'providers_views_displays' => array('block_topwhost_small'), 'listing_pos_fields' => array('field_p_listposition_sh')),
+      //'top_sh_providers' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('block_top_sh_p_table'), 'listing_pos_fields' => array('field_p_listposition_sh')),
+      //'top_wp_providers' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('block_top_wp_p_table'), 'listing_pos_fields' => array('field_p_listposition_wp')),
+      //'top_vps_providers' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('block_top_vps_p_table'), 'listing_pos_fields' => array('field_p_listposition_vps')), 
+      //'top_wb_providers' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('block_top_wb_p_table'), 'listing_pos_fields' => array('field_p_listposition_wb')),
+      //'top_ca_providers' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('block_top_ca_p_table'), 'listing_pos_fields' => array('field_p_listposition_ca')),
+      //'top_ds_providers' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('block_top_ds_p_table'), 'listing_pos_fields' => array('field_p_listposition_ds')),
+      //'top_ch_providers' => array('image_style' => 'logo_provider_chart_main', 'providers_views_displays' => array('block_top_ch_p_table'), 'listing_pos_fields' => array('field_p_listposition_ch')),
+    
+              
+              
+      $display_to_sprite = array(
+                                  'block_h_top_sh_table' => 'home_top_providers',
+                                  'block_topwhost_small' => 'top_webhost_small_block',
+                                  'block_top_sh_p_table' => 'top_sh_providers',
+                                  'block_top_wp_p_table' => 'top_wp_providers',
+                                  'block_top_vps_p_table' => 'top_vps_providers',
           
+                                  'block_top_wb_p_table' => 'top_wb_providers',
+                                  'block_top_ca_p_table' => 'top_ca_providers',
+                                  'block_top_ds_p_table' => 'top_ds_providers',
+                                  'block_top_ch_p_table' => 'top_ch_providers',
+      );
+      
+      /*
+      $url_to_sprite = array( '/' => 'home_top_providers', 
+                              
+                              '/reviews' => 'all_reviews_providers', 
+          
+                              '/business' => 'top_bu_providers', 
+                              
+                              '/get/iframe/business-voip-chart' => 'top_bu_providers', 
+          
+                              '/business-voip-reviews' => 'top_bu_providers', 
+                              '/reviews/business' => 'top_bu_providers_rev', 
+          
+                              '/speed-test-tool' => 'top_bu_providers', 
+          
+                              '/hosted-pbx' => 'top_pbx_providers', 
+
+                              '/sip-trunking' => 'top_sip_providers',
+
+                              '/fax' => 'top_ifa_providers',
+
+                              '/canada' => 'top_ca_providers',
+
+                              '/residential' => 'top_re_providers', 
+                              
+                              '/residential-voip-reviews' => 'top_re_providers',
+                              '/reviews/residential' => 'top_re_providers_rev',
+                            );
+
+      $current_url = $_SERVER['REQUEST_URI'];
+      
+      if (isset($url_to_sprite[$current_url]) || $_GET['q'] == 'home') {
+      
+        if ($_GET['q'] == 'home') {
+          $sprite_name = 'home_top_providers';
         }
-//        else {
-//          $out = '<a href="' . $link . '" target="_blank">' . $data['data']->node_title . '</a>';
-//        }
+        else {
+          $sprite_name = $url_to_sprite[$current_url];
+        }
+
+        
+        if ($p_image = bwh_misc_getProviderLogoFromSprite($data['data']->nid, $sprite_name, $all_data_quick)) {
+          return bwh_misc_getTrackingUrl($p_image, NULL, $data['data']->nid, NULL, NULL, NULL, $all_data_quick[$data['data']->nid], @$data['service_type']);
+        }
+      
+      }
+      */
+      
+      if (isset($data['view_display']) && isset($display_to_sprite[$data['view_display']])) {
+      
+        if ($p_image = bwh_misc_getProviderLogoFromSprite($data['data']->nid, $display_to_sprite[$data['view_display']], $all_data_quick)) {
+          $out = bwh_misc_getTrackingUrl($p_image, NULL, $data['data']->nid, NULL, NULL, NULL, $all_data_quick[$data['data']->nid], @$data['service_type']);
+        }
+      
+      }
+      
+      
+      
+      if (!$out) {
+      
+          if (!empty($all_data_quick[$data['data']->nid]['i_logo_uri'])) {
+
+            if ($target == 'logo_chart') {
+              $image_style_name = 'logo_provider_chart_main';
+            } 
+            elseif ($target == 'logo_chart_iframe') {
+              $image_style_name = 'logo_provider_chart_iframe';
+            }
+            elseif ($target == 'logo_article') {
+              $image_style_name = 'thumbnail';
+            }
+            elseif ($target == 'logo_small_block') {
+              $image_style_name = 'article_thumbnail_side_block';
+            }
+
+            $image = theme('bwh_misc_image_style', array('style_name' => $image_style_name, 'path' => $all_data_quick[$data['data']->nid]['i_logo_uri'], 'alt' =>  $all_data_quick[$data['data']->nid]['i_logo_alt'], 'title' =>  $all_data_quick[$data['data']->nid]['i_logo_title'] ));
+
+    //        global $user;
+    //        if ($data['data']->nid == 88 && $user->hostname == '109.171.109.18') { // 88 - hostgator
+    //           dpm($all_data_quick[$data['data']->nid]);
+    //        }
+
+
+            $out = bwh_misc_getTrackingUrl($image, $all_data_quick[$data['data']->nid]['subpath'], $data['data']->nid, NULL, NULL, @$data['service_type']);
+            //$out .= bwh_misc_getTrackingUrl('', NULL, $data['data']->nid, NULL, 'reviews visit-site-btn', @$data['service_type']);
+          }
+          else {
+            if (!empty($all_data_quick[$data['data']->nid]['name'])) {
+              //$out = ch_misc_getTrackingUrl($all_data_quick[$data['data']->nid]['name'], NULL, $data['data']->nid, NULL, NULL, @$data['service_type']);
+              $out = bwh_misc_getTrackingUrl($all_data_quick[$data['data']->nid]['name'], $all_data_quick[$data['data']->nid]['subpath'], $data['data']->nid, NULL, NULL, @$data['service_type']);
+
+            }
+    //        else {
+    //          $out = '<a href="' . $link . '" target="_blank">' . $data['data']->node_title . '</a>';
+    //        }
+          }
+
       }
 
       
       
       if ($target == 'logo_chart') {
         
-        if (!empty($all_data_quick[$data['data']->nid][$data['service_type']]['fees']['monthly-crossed']) && strpos($all_data_quick[$data['data']->nid][$data['service_type']]['fees']['monthly-crossed'], '-') !== 0) {
+        if (!empty($data['service_type']) && !empty($all_data_quick[$data['data']->nid][$data['service_type']]['fees']['monthly-crossed']) && strpos($all_data_quick[$data['data']->nid][$data['service_type']]['fees']['monthly-crossed'], '-') !== 0) {
           $out .= bwh_misc_getTrackingUrl('<div class="limited-time">LIMITED TIME</div>', $all_data_quick[$data['data']->nid]['subpath'], $data['data']->nid, NULL, NULL, @$data['service_type']);
         }
         
