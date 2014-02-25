@@ -16,7 +16,6 @@
                 <?php
                 
                   echo '<div class="listpos"><div><span>', $node->field_p_listposition_sh['und'][0]['value'], '</span></div></div>';
-                  dpm($_SERVER['REQUEST_URI']);
                   if (isset($node->field_p_logo['und'][0]['uri'])) {
                     if ($_SERVER['REQUEST_URI'] != '/' || !$image = bwh_misc_getProviderLogoFromSprite($node->nid, 'home_top_providers_teasers')) {
                       $image = theme('image_style', array( 'path' =>  $node->field_p_logo['und'][0]['uri'], 'style_name' => 'logo_provider_teaser', 'alt' => $node->field_p_logo['und'][0]['alt'], 'title' => $node->field_p_logo['und'][0]['title']));
@@ -25,7 +24,6 @@
                     //$logo = '<div class="logo"><div>' . theme('image_style', array( 'path' =>  $node->field_p_logo['und'][0]['uri'], 'style_name' => 'logo_provider_teaser', 'alt' => $node->field_p_logo['und'][0]['alt'], 'title' => $node->field_p_logo['und'][0]['title'])) . '</div></div>';
                     $logo = '<div class="logo"><div>' . $image . '</div></div>';
 
-                    dpm($image);
                     $h2_class = ' class="with-logo"';
                   }
                   else {
