@@ -6104,9 +6104,9 @@ function bwh_misc_getProviderQuickData($target, $data) {
       }
       */
       
-      if (isset($data['view_display']) && isset($display_to_sprite[$data['view_display']])) {
+      if (isset($data['current_display']) && isset($display_to_sprite[$data['current_display']])) {
       
-        if ($p_image = bwh_misc_getProviderLogoFromSprite($data['data']->nid, $display_to_sprite[$data['view_display']], $all_data_quick)) {
+        if ($p_image = bwh_misc_getProviderLogoFromSprite($data['data']->nid, $display_to_sprite[$data['current_display']], $all_data_quick)) {
           $out = bwh_misc_getTrackingUrl($p_image, NULL, $data['data']->nid, NULL, NULL, NULL, $all_data_quick[$data['data']->nid], @$data['service_type']);
         }
       
