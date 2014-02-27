@@ -22,6 +22,13 @@ function bwh_misc_menu() {
  
   //dpm($items);
   
+  $items['upd-header-date'] = array(
+    'title' => 'Update a header date',
+    'page callback' => 'bwh_misc_updateHeaderDate',
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  
   $items['cc'] = array(
     'title' => 'Flush the cache and redirect to the Home page',
     'page callback' => 'bwh_misc_flushCache',
@@ -176,6 +183,42 @@ function bwh_misc_menu_alter(&$items) {
   //unset($items['taxonomy/term/%taxonomy_term']);
   unset($items['taxonomy/term/%taxonomy_term/view']);
   unset($items['taxonomy/term/%taxonomy_term/feed']); // If you want to hide the feed as well.
+}
+
+
+/**
+ * Update a header date.
+ */
+function bwh_misc_updateHeaderDate() {
+  $data = unserialize(variable_get('bwh_home_flag_header2_block_data', NULL));
+  $current_time = date('F d, Y \a\t g:ia', time());
+  //$data = array('text_1' => $edit['text_1'], 'text_2' => $edit['text_2'], 'date' => $current_time);
+  $data['date'] = $current_time;
+  variable_set('bwh_home_flag_header2_block_data', serialize($data));
+  
+  
+  
+  
+  //drupal_flush_all_caches();
+  
+  // Not so hard reset...
+
+  // The code from function views_invalidate_cache()
+  // Clear the views cache.
+  cache_clear_all('*', 'cache_views', TRUE);
+  // Clear the page and block cache.
+  cache_clear_all();
+  // Allow modules to respond to the Views cache being cleared.
+  module_invoke_all('views_invalidate_cache');
+  
+  cache_clear_all('*', 'cache_views_data', TRUE);
+  
+  // Function from the module boost.
+  boost_flush_caches();
+  
+  
+  drupal_set_message('Header date is updadet. Cache is flushed.', 'warning');
+  drupal_goto('');
 }
 
 
