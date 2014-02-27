@@ -113,7 +113,7 @@ input.blur, textarea.blur,
 /*.front #header {background: url("images/header-back-banner.png") no-repeat center 62px transparent; height: 176px;}*/
 
 /*#header .intro {display: none;}*/
-#block-bwh-blocks-home-flag-header {position: relative; top: 50px;}
+#block-bwh-blocks-home-flag-header, #block-bwh-blocks-home-flag-header2 {position: relative; top: 50px;}
 .front #header .intro {display: block; text-align: center; color: white; font-size: 36px; text-shadow: 1px 2px 3px rgb(61, 61, 61); text-rendering: optimizeLegibility !important; -webkit-font-smoothing: antialiased !important; font-weight: 500; font-family: arial; font-family: 'Roboto'; font-size: 40px;}
 #header .intro div {font-size: 18px; margin-top: 15/*75*/px; text-transform: uppercase; font-weight: normal !important; font-family: arial;}
 
