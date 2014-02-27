@@ -124,6 +124,10 @@ function bwh_blocks_block_info() {
     'cache' => DRUPAL_NO_CACHE,
   );
   
+  $blocks['home_flag_header2'] = array(
+    'info' => 'Home Flag Header 2',
+    'cache' => DRUPAL_NO_CACHE,
+  );
       
   return $blocks;
 }
@@ -223,6 +227,11 @@ function bwh_blocks_block_view($delta = '') {
       $block['content'] = bwh_blocks_getHomeFlagHeader();
       break;
     
+    case 'home_flag_header2':
+      $block['subject'] = '';
+      $block['content'] = bwh_blocks_getHomeFlagHeader2();
+      break;
+    
     
     
     default:
@@ -291,6 +300,31 @@ function bwh_blocks_block_configure($delta = '') {
         '#type' => 'textfield', 
         '#title' => 'Text 2',
         '#default_value' => $data['text_2'], 
+      );
+      
+      break;
+    
+    
+    
+    case 'home_flag_header2':
+      $data = unserialize(variable_get('bwh_home_flag_header2_block_data', NULL));
+    
+      $form['text_1'] = array(
+        '#type' => 'textfield', 
+        '#title' => 'Text 1',
+        '#default_value' => $data['text_1'], 
+      );
+      
+      $form['text_2'] = array(
+        '#type' => 'textfield', 
+        '#title' => 'Text 2',
+        '#default_value' => $data['text_2'], 
+      );
+      
+      $form['date'] = array(
+        '#type' => 'textfield', 
+        '#title' => 'Date',
+        '#default_value' => $data['date'], 
       );
       
       break;
@@ -377,6 +411,11 @@ function bwh_blocks_block_save($delta = '', $edit = array()) {
       variable_set('bwh_home_flag_header_block_data', serialize($data));
       break;
     
+    case 'home_flag_header2':
+      $data = array('text_1' => $edit['text_1'], 'text_2' => $edit['text_2'], 'date' => $edit['date']);
+      variable_set('bwh_home_flag_header2_block_data', serialize($data));
+      break;
+    
     case 'home_banner':
       $data = array('main_title' => $edit['bwh_main_title'], 'main_body' => $edit['bwh_main_body'], 'right_title' => $edit['bwh_right_title'], 'right_body' => $edit['bwh_right_body']);
       variable_set('bwh_home_banner_block_data', serialize($data));
@@ -399,6 +438,17 @@ function bwh_blocks_getHomeFlagHeader() {
   $data = unserialize(variable_get('bwh_home_flag_header_block_data', NULL));
   
   return '<div class="intro">' . $data['text_1'] . '<div>' . $data['text_2'] . '</div></div>';
+}
+
+
+/**
+ * Block with home flag header 2..
+ */
+function bwh_blocks_getHomeFlagHeader2() {
+  
+  $data = unserialize(variable_get('bwh_home_flag_header2_block_data', NULL));
+  
+  return '<div class="intro">' . $data['text_1'] . '<div>' . $data['text_2'] . $data['date'] . '</div></div>';
 }
 
 
