@@ -414,7 +414,7 @@ function bwh_blocks_block_save($delta = '', $edit = array()) {
     case 'home_flag_header2':
       //$data = array('text_1' => $edit['text_1'], 'text_2' => $edit['text_2'], 'date' => $edit['date']);
       //$current_time = date('F d, Y \a\t g:ia', time());
-      $current_time = date('F d, Y', time());
+      $current_time = date('F j, Y', time());
       $data = array('text_1' => $edit['text_1'], 'text_2' => $edit['text_2'], 'date' => $current_time);
       variable_set('bwh_home_flag_header2_block_data', serialize($data));
       break;
