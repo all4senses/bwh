@@ -2223,7 +2223,7 @@ h2.with-logo .title {float: left; display: none;}
 .p-teaser .content {border: 2px solid #289ec6; height: 198px;}
 .p-teaser.first .content {border: 6px solid red;}
 
-.p-teaser .listpos {position: absolute; top: 10px; left: 5px; background: white; font-size: 70px; width: 95px; height: 96px;}
+.p-teaser .listpos {position: absolute; top: 10px; left: 5px; background: white; font-size: 70px; width: 95px; height: 110px;}
 .p-teaser.first .listpos {width: 80px;}
 
 .p-teaser .listpos div {border: 2px solid #289ec6; width: 80px; height: 80px; /*margin: auto;*/ text-align: center;}
