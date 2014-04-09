@@ -128,6 +128,11 @@ function bwh_blocks_block_info() {
     'info' => 'Home Flag Header 2',
     'cache' => DRUPAL_NO_CACHE,
   );
+  
+  $blocks['g_remarket_code'] = array(
+    'info' => 'Google Remarketing Code',
+    'cache' => DRUPAL_NO_CACHE,
+  );
       
   return $blocks;
 }
@@ -230,6 +235,11 @@ function bwh_blocks_block_view($delta = '') {
     case 'home_flag_header2':
       $block['subject'] = '';
       $block['content'] = bwh_blocks_getHomeFlagHeader2();
+      break;
+    
+    case 'g_remarket_code':
+      $block['subject'] = '';
+      $block['content'] = bwh_blocks_getGoogleRemarketingCode();
       break;
     
     
@@ -429,6 +439,36 @@ function bwh_blocks_block_save($delta = '', $edit = array()) {
       variable_set('bwh_home_services_block_data', serialize($data));
       break;
   }
+  
+}
+
+
+
+/**
+ * Google Remarketing Code.
+ */
+function bwh_blocks_getGoogleRemarketingCode() {
+  
+  return '
+<!-- Google Code for Remarketing Tag -->
+<!--------------------------------------------------
+Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. See more information and instructions on how to setup the tag on: http://google.com/ads/remarketingsetup
+--------------------------------------------------->
+<script type="text/javascript">
+/* <![CDATA[ */
+var google_conversion_id = 944838791;
+var google_custom_params = window.google_tag_params;
+var google_remarketing_only = true;
+/* ]]> */
+</script>
+<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js">
+</script>
+<noscript>
+<div style="display:inline;">
+<img height="1" width="1" style="border-style:none;" alt="" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/944838791/?value=0&amp;guid=ON&amp;script=0"/>
+</div>
+</noscript>
+';
   
 }
 
