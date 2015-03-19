@@ -7386,3 +7386,19 @@ class ChPager extends PagerDefault {
   }
 
 }
+
+
+/**
+ * 
+ * User permissions access calback function for the admin.
+ * 
+ */
+function bwh_misc_userIsRoot() {
+  global $user;
+  if ($user->uid == 1) {
+    return TRUE;
+  }
+  else {
+    return FALSE;
+  }
+}

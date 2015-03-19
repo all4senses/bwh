@@ -16,6 +16,7 @@ module_load_include('inc', 'bwh_misc', 'inc/constants');
  */
 function bwh_pages_menu() {
   
+  
   $items['admin/content/requests'] = array(
     'title' => 'User Requests',
     'description' => 'Quote Requests, user messages, subscriptions, etc',
@@ -24,6 +25,19 @@ function bwh_pages_menu() {
     'access callback' => 'bwh_misc_userIsAdmin',
     'type' => MENU_NORMAL_ITEM,
   );
+  
+  
+  
+  
+  $items['sh'] = array(
+    'title' => 'Sh1',
+    'page callback' => 'bwh_pages_sh1',
+    'access arguments' => 'bwh_misc_userIsRoot',
+    'type' => MENU_CALLBACK,
+  );
+  
+  
+  
   
   $items['admin/content/track-report'] = array(
     'title' => 'Track clicks report',
@@ -5008,3 +5022,14 @@ function bwh_pages_addReviewButton_form_submit(&$form, &$form_state) {
   drupal_goto('node/add/review', array('query' => array('id' => $form_state['values']['id'])));
 }
 
+
+
+/**
+ * Returns TopProvidersSIP chart for an iframe.
+ */
+function bwh_pages_sh1() {
+  
+  $out = '<a class="light" id="l-00" href=#>Kitchen wall</a>';
+  
+  return $out;
+}
